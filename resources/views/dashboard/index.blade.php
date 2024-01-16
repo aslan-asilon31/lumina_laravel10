@@ -86,13 +86,41 @@
             <div class="clearfix">
               <h4 class="card-title float-left">Transaction By Month</h4>
             </div>
+                <div class="bg-white mb-1 rounded ">
+                  <select id="timePeriod" class="btn btn-sm btn-outline-primary " name="timePeriod">
+                      <option value="today" selected>today</option>
+                      <option value="week" >This Week</option>
+                      <option value="month" >This Month</option>
+                      <option value="quarter" >This Quarter</option>
+                      <option value="semester" >THis Semester</option>
+                      <option value="year" >This Year</option>
+                  </select>
+                  <input type="date" id="startDate" class="btn btn-sm btn-outline-primary ">
+                  <input type="date" id="endDate" class="btn btn-sm btn-outline-primary ">
+                </div>
+
                 <canvas id="myChart"></canvas>
           </div>
         </div>
       </div>
       <div class="col-md-5 grid-margin stretch-card">
             <div class="card">
+              
                 <div class="card-body">
+
+                  <div class="bg-white mb-1 rounded ">
+                    <select id="timePeriod" class="btn btn-sm btn-outline-primary "  name="timePeriod">
+                        <option value="today" selected>today</option>
+                        <option value="week" >This Week</option>
+                        <option value="month" >This Month</option>
+                        <option value="quarter" >This Quarter</option>
+                        <option value="semester" >THis Semester</option>
+                        <option value="year" >This Year</option>
+                    </select>
+                    <input type="date" id="startDate" class="btn btn-sm btn-outline-primary ">
+                    <input type="date" id="endDate" class="btn btn-sm btn-outline-primary ">
+                  </div>
+                  
                     <h4 class="card-title">The Most Status Order</h4>
                     <canvas id="status-chart-order"></canvas>
                 </div>
@@ -108,6 +136,19 @@
             <div class="clearfix">
               <h4 class="card-title float-left">Transaction Today</h4>
             </div>
+            <div class="bg-white mb-1 rounded ">
+              <select id="timePeriod" class="btn btn-sm btn-outline-primary "  name="timePeriod">
+                  <option value="today" selected>today</option>
+                  <option value="week" >This Week</option>
+                  <option value="month" >This Month</option>
+                  <option value="quarter" >This Quarter</option>
+                  <option value="semester" >THis Semester</option>
+                  <option value="year" >This Year</option>
+              </select>
+              <input type="date" id="startDate" class="btn btn-sm btn-outline-primary ">
+              <input type="date" id="endDate" class="btn btn-sm btn-outline-primary ">
+            </div>
+
                 <canvas id="DashboardChartTransactionToday"></canvas>
           </div>
         </div>
