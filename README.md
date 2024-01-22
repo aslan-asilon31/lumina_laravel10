@@ -72,3 +72,12 @@ AngularJS : https://github.com/aslan-asilon34/lumina_angularjs  <br>
 
 </div>
 
+
+<div id="analysis">
+
+## Design DB
+
+<img width="835" alt="Screenshot 2024-01-22 142126" src="https://github.com/aslan-asilon31/lumina_laravel10/assets/116990574/e6c9093f-8e79-47c1-b408-97d04c9341f0">
+
+</div>
+

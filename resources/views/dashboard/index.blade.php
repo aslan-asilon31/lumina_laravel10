@@ -8,25 +8,6 @@
 
   <div class="content-wrapper">
 
-    <div class="bg-white mb-1 rounded ">
-            
-            <label for="timePeriod">Select Time Period:</label>
-            <select id="timePeriod" class="btn btn-sm btn-outline-primary " name="timePeriod">
-                <option value="today" selected>today</option>
-                <option value="week" >This Week</option>
-                <option value="month" >This Month</option>
-                <option value="quarter" >This Quarter</option>
-                <option value="semester" >THis Semester</option>
-                <option value="year" >This Year</option>
-            </select>
-        
-            <label for="startDate">Select Start Date:</label>
-            <input type="date" id="startDate" class="btn btn-sm btn-outline-primary ">
-        
-            <label for="timePeriod">Select End Date:</label>
-            <input type="date" id="endDate" class="btn btn-sm btn-outline-primary ">
-        
-    </div>
 
     <div class="row">
       <div class="col-md-4 stretch-card grid-margin">
@@ -78,13 +59,42 @@
         </div>
       </div>
     </div>
-
+    
     <div class="row">
-      <div class="col-md-7 grid-margin stretch-card">
+      <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
             <div class="clearfix">
-              <h4 class="card-title float-left">Transaction By Month</h4>
+              <h4 class="card-title float-left">Transaction</h4>
+            </div>
+            <div class="bg-white mb-1 rounded ">
+              <select id="timePeriodTransaction" class="btn btn-sm btn-outline-primary "  name="timePeriodTransaction">
+                  <option value="" >-</option>
+                  <option value="today" selected>today</option>
+                  <option value="week" >Week</option>
+                  <option value="month" >Month</option>
+                  <option value="quarter" >Quarter</option>
+                  <option value="semester" >Semester</option>
+                  <option value="year" >Year</option>
+              </select>
+              <input type="date" id="startDate" class="btn btn-sm btn-outline-primary ">
+              <input type="date" id="endDate" class="btn btn-sm btn-outline-primary ">
+              <button id="submitTimePeriodTransaction" class="btn btn-sm btn-primary"> Search </button>
+            </div>
+                <canvas id="DashboardChartTransactionToday"></canvas>
+                <canvas id="DashboardChartTransactionToday1"></canvas>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+      {{-- <div class="col-md-7 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <div class="clearfix">
+              <h4 class="card-title float-left">Transaction Month</h4>
             </div>
                 <div class="bg-white mb-1 rounded ">
                   <select id="timePeriod" class="btn btn-sm btn-outline-primary " name="timePeriod">
@@ -92,7 +102,7 @@
                       <option value="week" >This Week</option>
                       <option value="month" >This Month</option>
                       <option value="quarter" >This Quarter</option>
-                      <option value="semester" >THis Semester</option>
+                      <option value="semester" >This Semester</option>
                       <option value="year" >This Year</option>
                   </select>
                   <input type="date" id="startDate" class="btn btn-sm btn-outline-primary ">
@@ -102,19 +112,19 @@
                 <canvas id="myChart"></canvas>
           </div>
         </div>
-      </div>
-      <div class="col-md-5 grid-margin stretch-card">
+      </div> --}}
+      <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
               
                 <div class="card-body">
 
                   <div class="bg-white mb-1 rounded ">
-                    <select id="timePeriod" class="btn btn-sm btn-outline-primary "  name="timePeriod">
+                    <select id="timePeriodTransaction" class="btn btn-sm btn-outline-primary "  name="timePeriodTransaction">
                         <option value="today" selected>today</option>
                         <option value="week" >This Week</option>
                         <option value="month" >This Month</option>
                         <option value="quarter" >This Quarter</option>
-                        <option value="semester" >THis Semester</option>
+                        <option value="semester" >This Semester</option>
                         <option value="year" >This Year</option>
                     </select>
                     <input type="date" id="startDate" class="btn btn-sm btn-outline-primary ">
@@ -129,189 +139,8 @@
 
     </div>
 
-    <div class="row">
-      <div class="col-md-12 grid-margin stretch-card">
-        <div class="card">
-          <div class="card-body">
-            <div class="clearfix">
-              <h4 class="card-title float-left">Transaction Today</h4>
-            </div>
-            <div class="bg-white mb-1 rounded ">
-              <select id="timePeriod" class="btn btn-sm btn-outline-primary "  name="timePeriod">
-                  <option value="today" selected>today</option>
-                  <option value="week" >This Week</option>
-                  <option value="month" >This Month</option>
-                  <option value="quarter" >This Quarter</option>
-                  <option value="semester" >THis Semester</option>
-                  <option value="year" >This Year</option>
-              </select>
-              <input type="date" id="startDate" class="btn btn-sm btn-outline-primary ">
-              <input type="date" id="endDate" class="btn btn-sm btn-outline-primary ">
-            </div>
-
-                <canvas id="DashboardChartTransactionToday"></canvas>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="row">
-      <div class="col-md-12 grid-margin stretch-card">
-        <div class="card">
-          <div class="card-body">
-            <div class="clearfix">
-              <h4 class="card-title float-left">Visit And Sales Statistics</h4>
-              <div id="visit-sale-chart-legend" class="rounded-legend legend-horizontal legend-top-right float-right"></div>
-            </div>
-            <canvas id="visit-sale-chart" class="mt-4"></canvas>
-          </div>
-        </div>
-      </div>
-
-    </div>
 
 
-    <div class="row">
-      <div class="col-md-7 grid-margin stretch-card">
-        <div class="card">
-          <div class="card-body">
-            <h4 class="card-title">Project Status</h4>
-            <div class="table-responsive">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th> # </th>
-                    <th> Name </th>
-                    <th> Due Date </th>
-                    <th> Progress </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td> 1 </td>
-                    <td> Herman Beck </td>
-                    <td> May 15, 2015 </td>
-                    <td>
-                      <div class="progress">
-                        <div class="progress-bar bg-gradient-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td> 2 </td>
-                    <td> Messsy Adam </td>
-                    <td> Jul 01, 2015 </td>
-                    <td>
-                      <div class="progress">
-                        <div class="progress-bar bg-gradient-danger" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td> 3 </td>
-                    <td> John Richards </td>
-                    <td> Apr 12, 2015 </td>
-                    <td>
-                      <div class="progress">
-                        <div class="progress-bar bg-gradient-warning" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td> 4 </td>
-                    <td> Peter Meggik </td>
-                    <td> May 15, 2015 </td>
-                    <td>
-                      <div class="progress">
-                        <div class="progress-bar bg-gradient-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td> 5 </td>
-                    <td> Edward </td>
-                    <td> May 03, 2015 </td>
-                    <td>
-                      <div class="progress">
-                        <div class="progress-bar bg-gradient-danger" role="progressbar" style="width: 35%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td> 5 </td>
-                    <td> Ronald </td>
-                    <td> Jun 05, 2015 </td>
-                    <td>
-                      <div class="progress">
-                        <div class="progress-bar bg-gradient-info" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-5 grid-margin stretch-card">
-        <div class="card">
-          <div class="card-body">
-            <h4 class="card-title text-white">Todo</h4>
-            <div class="add-items d-flex">
-              <input type="text" class="form-control todo-list-input" placeholder="What do you need to do today?">
-              <button class="add btn btn-gradient-primary font-weight-bold todo-list-add-btn" id="add-task">Add</button>
-            </div>
-            <div class="list-wrapper">
-              <ul class="d-flex flex-column-reverse todo-list todo-list-custom">
-                <li>
-                  <div class="form-check">
-                    <label class="form-check-label">
-                      <input class="checkbox" type="checkbox"> Meeting with Alisa </label>
-                  </div>
-                  <i class="remove mdi mdi-close-circle-outline"></i>
-                </li>
-                <li class="completed">
-                  <div class="form-check">
-                    <label class="form-check-label">
-                      <input class="checkbox" type="checkbox" checked> Call John </label>
-                  </div>
-                  <i class="remove mdi mdi-close-circle-outline"></i>
-                </li>
-                <li>
-                  <div class="form-check">
-                    <label class="form-check-label">
-                      <input class="checkbox" type="checkbox"> Create invoice </label>
-                  </div>
-                  <i class="remove mdi mdi-close-circle-outline"></i>
-                </li>
-                <li>
-                  <div class="form-check">
-                    <label class="form-check-label">
-                      <input class="checkbox" type="checkbox"> Print Statements </label>
-                  </div>
-                  <i class="remove mdi mdi-close-circle-outline"></i>
-                </li>
-                <li class="completed">
-                  <div class="form-check">
-                    <label class="form-check-label">
-                      <input class="checkbox" type="checkbox" checked> Prepare for presentation </label>
-                  </div>
-                  <i class="remove mdi mdi-close-circle-outline"></i>
-                </li>
-                <li>
-                  <div class="form-check">
-                    <label class="form-check-label">
-                      <input class="checkbox" type="checkbox"> Pick up kids from school </label>
-                  </div>
-                  <i class="remove mdi mdi-close-circle-outline"></i>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 
 
@@ -360,11 +189,13 @@
 @endpush
 
 @push('js')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         $(document).ready(function() {
             loadDataToday()
+            $('#timePeriodTransaction').val('');
             setDefaultDateRange()
         });
     </script>
@@ -399,25 +230,25 @@
         }
 
         function updateOptionTimePeriods() {
-            var timePeriodSelect = $('#timePeriod').val();
+            var timePeriodSelect = $('#timePeriodTransaction').val();
 
             // Depending on the selected time period, update the options or perform other actions
             switch (timePeriodSelect) {
                 case '':
-                    var timePeriodSelect = $('#timePeriod').val(null);
+                    var timePeriodSelect = $('#timePeriodTransaction').val(null);
                     break;
                 case 'today':
-                    var timePeriodSelect = $('#timePeriod').val('today');
+                    var timePeriodSelect = $('#timePeriodTransaction').val('today');
                     break;
                 case 'week':
-                    var timePeriodSelect = $('#timePeriod').val('week');
+                    var timePeriodSelect = $('#timePeriodTransaction').val('week');
                     // Additional options or actions for 'week'
                     break;
                 // Add cases for other time periods as needed
             }
         }
 
-        $('#timePeriod').on('change', function () {
+        $('#timePeriodTransaction').on('change', function () {
             // var startDate = $('#startDate').val(null);
             // var endDate = $('#endDate').val(null);
 
@@ -455,12 +286,12 @@
         });
 
         $('#startDate').on('change', function () {
-            $('#timePeriod').val('');
+            $('#timePeriodTransaction').val('');
             $('#TransactionAll').val('');
         });
 
         $('#endDate').on('change', function () {
-            $('#timePeriod').prop('selectedIndex', 0);
+            $('#timePeriodTransaction').prop('selectedIndex', 0);
             // loadDataTransaction();
         });
 
@@ -693,9 +524,112 @@
             );
         })
         .catch(error => console.error('Error fetching chart data:', error));
+
 </script>
 
-{{-- Transaction Today  --}}
+{{-- Transaction Today by choose option  --}}
+
+<script>
+  const label_hours = Array.from({ length: 24 }, (_, i) => i + ':00'); // Labels for each hour
+  const label_days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  // ---------------month
+  // Get the date month from date 1 until last date
+    const currentDate = moment();
+    const currentMonth = currentDate.month();
+    const currentYear = currentDate.year();
+    const daysInMonth = moment(currentDate).daysInMonth();
+
+    const label_dates = Array.from({ length: daysInMonth }, (_, i) =>
+      moment(`${currentYear}-${currentMonth + 1}-${i + 1}`).format('YYYY-MM-DD')
+    );
+
+    // month name in a year
+    const label_month = [];
+
+    for (let month = 0; month < 12; month++) {
+        const monthName = moment().month(month).format('MMMM'); // Get month name
+        label_month.push(monthName);
+    }
+
+    const label_quarter1 = [];
+    const label_quarter2 = [];
+    const label_quarter3 = [];
+    const label_quarter4 = [];
+
+    for (let month = 0; month < 12; month++) {
+        const quarterNumber = Math.floor(month / 3) + 1; // Calculate quarter number
+        const quarterPrefix = "Q" + quarterNumber; // Add quarter prefix
+
+        const monthName = moment().month(month).format('MMMM'); // Get month name
+        const quarterMonth = `${quarterPrefix} ${monthName}`; // Combine quarter and month
+
+        // Separate months into Quarter 1 and Quarter 2 arrays
+        if (quarterNumber === 1) {
+            label_quarter1.push(quarterMonth);
+        } else if (quarterNumber === 2) {
+            label_quarter2.push(quarterMonth);
+        } else if (quarterNumber === 3) {
+            label_quarter3.push(quarterMonth);
+        } else if (quarterNumber === 4) {
+            label_quarter4.push(quarterMonth);
+        }
+    }
+
+    
+    const quater_value = ['Q1', 'Q2', 'Q3', 'Q4'];
+  // ---------------end month
+
+
+  fetch('/dashboard-chart-data-today')
+      .then(response => {
+          if (!response.ok) {
+              throw new Error('Network response was not ok');
+          }
+          return response.json();
+      })
+      .then(data => {
+          // Process the fetched data
+          const data_chart_per_hour = data.map(value => Number(value));
+
+          const chartData = {
+              labels: label_hours,
+              datasets: [{
+                  label: 'Transaction By Hour',
+                  backgroundColor: '#b66dff',
+                  borderColor: 'rgb(0, 255, 255)',
+                  data: data_chart_per_hour,
+              }]
+          };
+
+          const config = {
+              type: 'line',
+              data: chartData,
+              options: {
+                  scales: {
+                      y: {
+                          beginAtZero: true,
+                          ticks: {
+                              callback: function (value, index, values) {
+                                  return 'Rp ' + Number(value).toLocaleString('id-ID');
+                              }
+                          }
+                      }
+                  },
+              }
+          };
+
+          new Chart(
+              document.getElementById('DashboardChartTransactionToday'),
+              config
+          );
+      })
+      .catch(error => {
+          console.error('Error fetching chart data:', error);
+      });
+</script>
+
+
+{{-- Transaction Today automatic reload  --}}
 <script>
     const label_hours = Array.from({ length: 24 }, (_, i) => i + ':00'); // Labels for each hour
 
@@ -714,8 +648,8 @@
                 labels: label_hours,
                 datasets: [{
                     label: 'Transaction By Hour',
-                    backgroundColor: 'rgb(255, 99, 132)',
-                    borderColor: 'rgb(255, 99, 132)',
+                    backgroundColor: '#b66dff',
+                    borderColor: 'rgb(0, 255, 255)',
                     data: data_chart_per_hour, // Use the fetched data here
                 }]
             };
@@ -746,7 +680,7 @@
             };
 
             new Chart(
-                document.getElementById('DashboardChartTransactionToday'),
+                document.getElementById('DashboardChartTransactionToday1'),
                 config
             );
 
@@ -764,48 +698,315 @@
 </script>
 
 
+
+
 <script>
 
-fetch('/dashboard-status-chart-data-order') // Update the URL based on your Laravel route
-    .then(response => response.json())
-    .then(data => {
-        // Generate dynamic colors based on the length of the labels array
-        const dynamicColors = Array.from({ length: data.labels.length }, (_, index) => getRandomColor(index));
+    fetch('/dashboard-status-chart-data-order') // Update the URL based on your Laravel route
+        .then(response => response.json())
+        .then(data => {
+            // Generate dynamic colors based on the length of the labels array
+            const dynamicColors = Array.from({ length: data.labels.length }, (_, index) => getRandomColor(index));
 
-        // Create a pie chart
-        const ctx = document.getElementById('status-chart-order').getContext('2d');
-        new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                labels: data.labels,
-                datasets: [{
-                    label: 'Status Orders',
-                    backgroundColor: dynamicColors,
-                    borderColor: dynamicColors,
-                    data: data.counts,
-                }]
-            },
-            options: {
-                // Your existing options
-            }
+            // Create a pie chart
+            const ctx = document.getElementById('status-chart-order').getContext('2d');
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: data.labels,
+                    datasets: [{
+                        label: 'Status Orders',
+                        backgroundColor: dynamicColors,
+                        borderColor: dynamicColors,
+                        data: data.counts,
+                    }]
+                },
+                options: {
+                    // Your existing options
+                }
+            });
+        })
+        .catch(error => console.error('Error fetching status chart data:', error));
+
+        // Function to generate a random color
+        function getRandomColor(index) {
+            const colors = [
+                'rgb(255, 99, 132)',
+                'rgb(54, 162, 235)',
+                'rgb(255, 205, 86)',
+                'rgb(75, 192, 192)',
+                'rgb(153, 102, 255)',
+                'rgb(255, 159, 64)',
+            ];
+
+        return colors[index % colors.length];
+    }
+
+</script>
+
+
+<script>
+         $('#submitTimePeriodTransaction').on('click', function () {
+            // Get selected values
+            var timePeriod = $('#timePeriodTransaction').val();
+            var startDate = $('#startDate').val();
+            var endDate = $('#endDate').val();
+
+            // Make Ajax request
+            $.ajax({
+                url: 'dashboard-transaction-data', // Replace with your actual Laravel controller route
+                method: 'GET',
+                data: {
+                    timePeriod: timePeriod,
+                    startDate: startDate,
+                    endDate: endDate,
+                    // Add any other parameters you need to send
+                },
+                success: function (data) {
+                    $('#DashboardChartTransactionToday').hide();
+
+                    if(data.timePeriod == 'today') {
+                      const chartData = {
+                          labels: label_hours,
+                          datasets: [{
+                              label: 'Transaction By Hour',
+                              backgroundColor: '#b66dff',
+                              borderColor: 'rgb(0, 255, 255)',
+                              data: data.resultToday,
+                          }]
+                      };
+  
+                      const config = {
+                          type: 'line',
+                          data: chartData,
+                          options: {
+                              scales: {
+                                  y: {
+                                      beginAtZero: true,
+                                      ticks: {
+                                          callback: function (value, index, values) {
+                                              return 'Rp ' + Number(value).toLocaleString('id-ID');
+                                          }
+                                      }
+                                  }
+                              },
+                          }
+                      };
+  
+                      // Create the second chart
+                      new Chart(
+                          document.getElementById('DashboardChartTransactionToday1'),
+                          config
+                      );
+
+                    }else if(data.timePeriod == 'week' ){
+                      const chartData = {
+                          labels: label_days,
+                          datasets: [{
+                              label: 'Transaction By Week',
+                              backgroundColor: '#b66dff',
+                              borderColor: 'rgb(0, 255, 255)',
+                              data: data.resultWeek,
+                          }]
+                      };
+  
+                      const config = {
+                          type: 'line',
+                          data: chartData,
+                          options: {
+                              scales: {
+                                  y: {
+                                      beginAtZero: true,
+                                      ticks: {
+                                          callback: function (value, index, values) {
+                                              return 'Rp ' + Number(value).toLocaleString('id-ID');
+                                          }
+                                      }
+                                  }
+                              },
+                          }
+                      };
+  
+                      // Create the second chart
+                      new Chart(
+                          document.getElementById('DashboardChartTransactionToday1'),
+                          config
+                      );
+                    }else if(data.timePeriod == 'month' ){
+                      const chartData = {
+                          labels: label_month,
+                          datasets: [{
+                              label: 'Transaction By Month',
+                              backgroundColor: '#b66dff',
+                              borderColor: 'rgb(0, 255, 255)',
+                              data: data.resultMonth,
+                          }]
+                      };
+  
+                      const config = {
+                          type: 'line',
+                          data: chartData,
+                          options: {
+                              scales: {
+                                  y: {
+                                      beginAtZero: true,
+                                      ticks: {
+                                          callback: function (value, index, values) {
+                                              return 'Rp ' + Number(value).toLocaleString('id-ID');
+                                          }
+                                      }
+                                  }
+                              },
+                          }
+                      };
+  
+                      // Create the second chart
+                      new Chart(
+                          document.getElementById('DashboardChartTransactionToday1'),
+                          config
+                      );
+                    }else if(data.timePeriod == 'quarter' ){
+                      const chartData = {
+                          labels: quater_value,
+                          datasets: [{
+                              label: 'Transaction By Quarter',
+                              backgroundColor: '#b66dff',
+                              borderColor: 'rgb(0, 255, 255)',
+                              data: data.resultQuarter,
+                          }]
+                      };
+  
+                      const config = {
+                          type: 'line',
+                          data: chartData,
+                          options: {
+                              scales: {
+                                  y: {
+                                      beginAtZero: true,
+                                      ticks: {
+                                          callback: function (value, index, values) {
+                                              return 'Rp ' + Number(value).toLocaleString('id-ID');
+                                          }
+                                      }
+                                  }
+                              },
+                          }
+                      };
+  
+                      // Create the second chart
+                      new Chart(
+                          document.getElementById('DashboardChartTransactionToday1'),
+                          config
+                      );
+                    }else if(data.timePeriod == 'semester' ){
+                      const chartData = {
+                          labels: data.resultSemester.semester_name,
+                          datasets: [{
+                              label: 'Transaction By Semester',
+                              backgroundColor: '#b66dff',
+                              borderColor: 'rgb(0, 255, 255)',
+                              data: data.resultSemester.semester_value,
+                          }]
+                      };
+  
+                      const config = {
+                          type: 'line',
+                          data: chartData,
+                          options: {
+                              scales: {
+                                  y: {
+                                      beginAtZero: true,
+                                      ticks: {
+                                          callback: function (value, index, values) {
+                                              return 'Rp ' + Number(value).toLocaleString('id-ID');
+                                          }
+                                      }
+                                  }
+                              },
+                          }
+                      };
+  
+                      // Create the second chart
+                      new Chart(
+                          document.getElementById('DashboardChartTransactionToday1'),
+                          config
+                      );
+                    }else if(data.timePeriod == 'year' ){
+                      const chartData = {
+                          labels: data.resultYear.year_name_transaction,
+                          datasets: [{
+                              label: 'Transaction By Year',
+                              backgroundColor: '#b66dff',
+                              borderColor: 'rgb(0, 255, 255)',
+                              data: data.resultYear.year_sum_transaction,
+                          }]
+                      };
+  
+                      const config = {
+                          type: 'line',
+                          data: chartData,
+                          options: {
+                              scales: {
+                                  y: {
+                                      beginAtZero: true,
+                                      ticks: {
+                                          callback: function (value, index, values) {
+                                              return 'Rp ' + Number(value).toLocaleString('id-ID');
+                                          }
+                                      }
+                                  }
+                              },
+                          }
+                      };
+  
+                      // Create the second chart
+                      new Chart(
+                          document.getElementById('DashboardChartTransactionToday1'),
+                          config
+                      );
+                    }else{
+                      const chartData = {
+                          labels: label_days,
+                          datasets: [{
+                              label: 'Transaction By -',
+                              backgroundColor: '#b66dff',
+                              borderColor: 'rgb(0, 255, 255)',
+                              data: data.resultWeek,
+                          }]
+                      };
+  
+                      const config = {
+                          type: 'line',
+                          data: chartData,
+                          options: {
+                              scales: {
+                                  y: {
+                                      beginAtZero: true,
+                                      ticks: {
+                                          callback: function (value, index, values) {
+                                              return 'Rp ' + Number(value).toLocaleString('id-ID');
+                                          }
+                                      }
+                                  }
+                              },
+                          }
+                      };
+  
+                      // Create the second chart
+                      new Chart(
+                          document.getElementById('DashboardChartTransactionToday1'),
+                          config
+                      );
+                    }
+
+                  
+                },
+                error: function (xhr, status, error) {
+                    // Handle error
+                    console.error(xhr.responseText);
+                }
+            });
         });
-    })
-    .catch(error => console.error('Error fetching status chart data:', error));
-
-    // Function to generate a random color
-    function getRandomColor(index) {
-        const colors = [
-            'rgb(255, 99, 132)',
-            'rgb(54, 162, 235)',
-            'rgb(255, 205, 86)',
-            'rgb(75, 192, 192)',
-            'rgb(153, 102, 255)',
-            'rgb(255, 159, 64)',
-        ];
-
-    return colors[index % colors.length];
-}
-
 </script>
 
 

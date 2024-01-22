@@ -27,6 +27,7 @@ Route::get('/dashboard-year', [DashboardController::class, 'dashboardyear']);
 Route::get('/dashboard-chart-data-today', [DashboardController::class, 'datacharttoday']);
 Route::get('/chart-data', [DashboardController::class, 'getChartData']);
 Route::get('/dashboard-status-chart-data-order', [DashboardController::class, 'datachartorder']);
+Route::get('/dashboard-transaction-data', [DashboardController::class, 'transactionData']);
 
 
 Route::get('/master-login', [MasterLoginController::class, 'index']);

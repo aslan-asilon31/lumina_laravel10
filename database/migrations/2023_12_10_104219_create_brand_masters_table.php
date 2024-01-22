@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('brand_masters', function (Blueprint $table) {
             $table->id();
-            $table->string('brand_id');
-            $table->string('product_id');
-            $table->string('status_id');
-            $table->string('image_id');
-            $table->string('name');
-            $table->string('lang');
-            $table->string('lang_id');
+            $table->string('brand_id')->nullable();
+            $table->string('product_id')->nullable();
+            $table->string('status_id')->nullable();
+            $table->string('image_id')->nullable();
+            $table->string('name')->nullable();
+            $table->string('lang')->nullable();
+            $table->string('lang_id')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

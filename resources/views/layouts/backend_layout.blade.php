@@ -16,7 +16,9 @@
     @stack('css')
     <link rel="stylesheet" href="{{ asset('backend/assets/css/style.css'); }}">
     <!-- End layout styles -->
-    <link rel="shortcut icon" href="{{ asset('backend/assets/images/favicon.ico'); }}" />
+       <!--=============== FAVICON ===============-->
+    {{-- <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon"> --}}
+    <link rel="shortcut icon" href="{{ asset('frontend/img/favicon.png'); }}" />
   </head>
   <body>
     <div class="container-scroller">

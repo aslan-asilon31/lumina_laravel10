@@ -16,6 +16,258 @@ class DashboardController extends Controller
         return view('dashboard.index');
     }
 
+    public function transactionData(Request $request){
+        $data['timePeriod'] = $request->input('timePeriod');
+        $data['startDate'] = $request->input('startDate');
+        $data['endDate'] = $request->input('endDate');
+        
+
+        if(!empty($data['timePeriod'])){
+            if($data['timePeriod'] == 'today'){
+                $data['resultToday'] = $this->transactionToday($data);
+            }elseif($data['timePeriod'] == 'week'){
+                $data['resultWeek'] = $this->transactionWeek($data);
+            }elseif($data['timePeriod'] == 'month'){
+                $data['resultMonth'] = $this->transactionMonth($data);
+            }elseif($data['timePeriod'] == 'quarter'){
+                $data['resultQuarter'] = $this->transactionQuarter($data);
+            }elseif($data['timePeriod'] == 'semester'){
+                $data['resultSemester'] = $this->transactionSemester($data);
+            }elseif($data['timePeriod'] == 'year'){
+                $data['resultYear'] = $this->transactionYear($data);
+            }else{
+                $result = 'null';
+            }
+
+        }
+
+        // dd($data['startDate'],$data['endDate']);
+        return response()->json($data);
+        
+    }
+    
+    public function transactionToday($data){
+        $currentDate = Carbon::today();
+        $chartData = [];
+    
+        for ($hour = 0; $hour < 24; $hour++) {
+            $startOfDay = $currentDate->copy()->hour($hour)->minute(0)->second(0);
+            $endOfDay = $currentDate->copy()->hour($hour)->minute(59)->second(59);
+    
+            $transactions = Transaction::whereBetween('created_at', [$startOfDay, $endOfDay])
+                ->count();
+    
+            $chartData[] = $transactions;
+        }
+        return $chartData;
+    }
+    
+    public function transactionTodayQuery($data){
+        dd($data);
+        return $data;
+    }
+    
+    public function transactionWeek($data){
+        $daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        $chartData = [];
+        
+        foreach ($daysOfWeek as $day) {
+            $startOfDay = Carbon::now()->startOfWeek()->next($day);
+            $endOfDay = $startOfDay->copy()->endOfDay();
+        
+            $transactions = DB::table('transactions')
+                ->whereBetween('created_at', [$startOfDay, $endOfDay])
+                ->count();
+        
+            $chartData[] = $transactions; // Store transaction count directly in the array
+        }
+        
+        
+        // dd($chartData);
+        // $data['orders'] = DB::table('orders')
+        //     ->whereBetween('created_at', [$startOfWeek, $endOfWeek])
+        //     ->count();
+
+        return $chartData;
+    }
+    
+    public function transactionMonth($data)
+    {
+        $currentYear = Carbon::now()->year;
+        $chartData = [];
+        
+        // Iterate over each month
+        for ($month = 1; $month <= 12; $month++) {
+            $startOfMonth = Carbon::createFromDate($currentYear, $month, 1, 'UTC')->startOfMonth();
+            $endOfMonth = $startOfMonth->copy()->endOfMonth();
+            
+            
+            DB::enableQueryLog();
+    
+            // $transactions = Transaction::whereBetween('created_at', [$startOfMonth, $endOfMonth])->count();
+    
+            $transactions = Transaction::whereBetween('created_at', [
+                $startOfMonth->format('Y-m-d H:i:s'),
+                $endOfMonth->format('Y-m-d H:i:s')
+            ])->count();
+
+            
+            $chartData[] = $transactions;
+        }
+        // dd($chartData);
+        return $chartData;
+    }
+    
+    public function transactionQuarter($data)
+    {
+        $currentYear = Carbon::now()->year;
+        $chartData = [];
+
+        // Iterate over each quarter
+        for ($quarter = 1; $quarter <= 4; $quarter++) {
+            // Determine the start and end months for the quarter
+            $startMonth = ($quarter - 1) * 3 + 1;
+            $endMonth = $quarter * 3;
+
+            // Set the start and end of the quarter using Carbon
+            $startOfQuarter = Carbon::createFromDate($currentYear, $startMonth, 1, 'UTC')->startOfMonth();
+            $endOfQuarter = Carbon::createFromDate($currentYear, $endMonth, 1, 'UTC')->endOfMonth();
+
+            DB::enableQueryLog();
+
+            // Retrieve transactions for the quarter
+            $transactions = Transaction::whereBetween('created_at', [
+                $startOfQuarter->format('Y-m-d H:i:s'),
+                $endOfQuarter->format('Y-m-d H:i:s')
+            ])->count();
+
+            $chartData[] = $transactions;
+        }
+
+        // dd($chartData);
+        return $chartData;
+    }
+
+    public function transactionSemester($data)
+    {
+        $semester_value = [];
+        $semester_name = [];
+
+        $currentYear = Carbon::now()->year;
+        $semesterValues = [];
+        $semesterNames = [];
+
+        $currentYear_before = Carbon::now()->subYear()->year;
+        $semesterValues_before = [];
+        $semesterNames_before = [];
+    
+        // Iterate over each semester
+        for ($semester = 1; $semester <= 2; $semester++) {
+            // Determine the start and end months for the semester
+            $startMonth = ($semester - 1) * 6 + 1;
+            $endMonth = $semester * 6;
+    
+            // Set the start and end of the semester using Carbon
+            $startOfSemester = Carbon::createFromDate($currentYear, $startMonth, 1, 'UTC')->startOfMonth();
+            $endOfSemester = Carbon::createFromDate($currentYear, $endMonth, 1, 'UTC')->endOfMonth();
+    
+            DB::enableQueryLog();
+    
+            // Retrieve transactions for the semester
+            $transactions = Transaction::whereBetween('created_at', [
+                $startOfSemester->format('Y-m-d H:i:s'),
+                $endOfSemester->format('Y-m-d H:i:s')
+            ])->count();
+    
+            // Store transactions count in semesterValues array
+            $semesterValues[] = $transactions;
+            $data['semester_value'] = $semesterValues;
+    
+            // Store semester name in semesterNames array
+            $semesterNames[] = "Semester $semester 2024";
+            $data['semester_name'] = $semesterNames;
+        }
+    
+        // Iterate over each semester year before
+        for ($semester_before = 1; $semester_before <= 2; $semester_before++) {
+            // Determine the start and end months for the semester
+            $startMonthYearBefore = ($semester_before - 1) * 6 + 1;
+            $endMonthYearBefore = $semester_before * 6;
+    
+            // Set the start and end of the semester using Carbon
+            $startOfSemester = Carbon::createFromDate($currentYear_before, $startMonthYearBefore, 1, 'UTC')->startOfMonth();
+            $endOfSemester = Carbon::createFromDate($currentYear_before, $endMonthYearBefore, 1, 'UTC')->endOfMonth();
+    
+            DB::enableQueryLog();
+    
+            // Retrieve transactions for the semester
+            $transactions_before = Transaction::whereBetween('created_at', [
+                $startOfSemester->format('Y-m-d H:i:s'),
+                $endOfSemester->format('Y-m-d H:i:s')
+            ])->count();
+    
+            // Store transactions count in semesterValues array
+            $semesterValues_before[] = $transactions_before;
+            $data['semester_value_before'] = $semesterValues_before;
+    
+            // Store semester name in semesterNames array
+            $semesterNames_before[] = "Semester $semester_before 2023";
+            $data['semester_name_before'] = $semesterNames_before;
+        }
+
+        $semester_value = array_merge($semesterValues, $semesterValues_before);
+        $semester_name = array_merge($semesterNames, $semesterNames_before);
+        
+        // dd($semester_value, $semester_name);
+        return ['semester_value' => $semester_value, 'semester_name' => $semester_name];
+    }
+    
+    public function transactionYear($data)
+    {
+        $currentYear = Carbon::now()->year;
+        $year_name_transaction = [];
+        $year_sum_transaction = [];
+
+        // Iterate over each year
+        for ($year = $currentYear - 5; $year <= $currentYear; $year++) {
+            $yearTotal = 0;
+
+            // Iterate over each semester
+            for ($semester = 1; $semester <= 2; $semester++) {
+                // Determine the start and end months for the semester
+                $startMonth = ($semester - 1) * 6 + 1;
+                $endMonth = $semester * 6;
+
+                // Set the start and end of the semester using Carbon
+                $startOfSemester = Carbon::createFromDate($year, $startMonth, 1, 'UTC')->startOfMonth();
+                $endOfSemester = Carbon::createFromDate($year, $endMonth, 1, 'UTC')->endOfMonth();
+
+                DB::enableQueryLog();
+
+                // Retrieve transactions for the semester
+                $transactions = Transaction::whereBetween('created_at', [
+                    $startOfSemester->format('Y-m-d H:i:s'),
+                    $endOfSemester->format('Y-m-d H:i:s')
+                ])->count();
+
+                // Accumulate transactions count in yearTotal
+                $yearTotal += $transactions;
+            }
+
+            // Store year and its total transactions in the respective arrays
+            $year_name_transaction[] = $year;
+            $year_sum_transaction[] = $yearTotal;
+        }
+
+        // Debugging: Display the arrays
+        // dd($year_name_transaction, $year_sum_transaction);
+
+        // Return the arrays if needed
+        return ['year_name_transaction' => $year_name_transaction, 'year_sum_transaction' => $year_sum_transaction];
+    }
+
+
+
     public function dashboardtoday(){
         $data['transactions'] = DB::table('transactions')
             ->whereDate('created_at', Carbon::today())

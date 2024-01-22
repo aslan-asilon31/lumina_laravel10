@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('log_history_masters', function (Blueprint $table) {
             $table->id();
-            $table->string('module')->default('ModuleName@id=OldField:OldValue#NewField:NewValue\UserId/');
+            $table->string('module')->default('ModuleName@id=OldField:OldValue#NewField:NewValue\UserId/')->nullable();
             $table->timestamps();
         });
     }

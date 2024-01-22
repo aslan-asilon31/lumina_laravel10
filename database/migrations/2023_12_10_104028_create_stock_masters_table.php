@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('stock_masters', function (Blueprint $table) {
             $table->id();
-            $table->string('stock_master_id');
-            $table->string('user_id');
-            $table->string('status_id');
-            $table->string('amount');
-            $table->string('lang');
-            $table->string('lang_id');
+            $table->string('stock_master_id')->nullable();
+            $table->string('user_id')->nullable();
+            $table->string('status_id')->nullable();
+            $table->string('amount')->nullable();
+            $table->string('lang')->nullable();
+            $table->string('lang_id')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

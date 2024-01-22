@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('social_accounts', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id');
+            $table->bigInteger('user_id')->nullable();
             $table->string('provider_id')->unique();
-            $table->string('provider_name');
+            $table->string('provider_name')->nullable();
             $table->timestamps();
         });
     }
