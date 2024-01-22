@@ -16,6 +16,22 @@
 
    <!--=============== CSS ===============-->
    <link rel="stylesheet" href="{{asset('frontend/css/styles.css')}}">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+   <style>
+         @keyframes swingInfinite {
+            0%, 100% {
+               transform: translateX(0);
+            }
+            50% {
+               transform: translateX(80px);
+            }
+         }
+
+         .infinite-swing {
+            animation: swingInfinite 2s infinite 0.3s;
+         }
+   </style>
 
    <title>Lumina Shop</title>
 </head>
@@ -25,7 +41,7 @@
    <header class="header" id="header">
       <nav class="nav container">
          <a href="#" class="nav__logo">
-            Lumina<span>Aslan</span>
+            Lumina<span> By Aslan</span>
          </a>
 
          <div class="nav__menu" id="nav-menu">
@@ -36,6 +52,10 @@
 
                <li class="nav__item">
                   <a href="#popular" class="nav__link">Popular</a>
+               </li>
+
+               <li class="nav__item">
+                  <a href="/product-search-detail" class="nav__link">Product</a>
                </li>
 
                <li class="nav__item">
@@ -126,9 +146,9 @@
 
             <div class="home__image">
                <div class="home__blob">
-                  <img src="{{asset('frontend/img/home-lamp.png')}}" alt="home image" class="home__img">
+                  <img class=" animate__animated infinite-swing " src="{{asset('frontend/img/home-lamp.png')}}" alt="home image" class="home__img">
                   <h1 class="home__blob-title">
-                     LIGHT
+                     {{-- LIGHT --}}
                   </h1>
                </div>
 

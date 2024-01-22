@@ -7,6 +7,7 @@ use App\Http\Controllers\BackupController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProductController;
 
 use App\Http\Controllers\MasterData\MasterLoginController;
 use App\Http\Controllers\MasterData\BrandMasterController;
@@ -28,6 +29,11 @@ Route::get('/dashboard-chart-data-today', [DashboardController::class, 'datachar
 Route::get('/chart-data', [DashboardController::class, 'getChartData']);
 Route::get('/dashboard-status-chart-data-order', [DashboardController::class, 'datachartorder']);
 Route::get('/dashboard-transaction-data', [DashboardController::class, 'transactionData']);
+
+Route::get('products', [ProductController::class,'index'])->name('products.index');
+Route::get('product-list', [ProductController::class,'getdata'])->name('products.list');
+Route::get('/product-search-detail', [ProductController::class, 'search_detail']);
+Route::get('/product-search-by-category', [ProductController::class, 'search_by_category']);
 
 
 Route::get('/master-login', [MasterLoginController::class, 'index']);
