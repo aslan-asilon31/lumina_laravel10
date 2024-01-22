@@ -70,6 +70,10 @@ AngularJS : https://github.com/aslan-asilon34/lumina_angularjs  <br>
 ![lumina_user_detail](https://github.com/aslan-asilon31/lumina_laravel10/assets/116990574/870ac18a-3e7b-4056-9db5-8f484cb9992d)
 
 
+![search-advance](https://github.com/aslan-asilon31/lumina_laravel10/assets/116990574/23f27b81-88c7-49e2-af99-868b9ffc4291)
+
+
+
 </div>
 
 
