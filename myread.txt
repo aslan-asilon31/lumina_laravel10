@@ -12,3 +12,6 @@ https://developer.twitter.com/en/portal/projects/1742378561628172288/
 https://github.com/settings/applications/
 
 localhost : 8585
+
+https://dashboard.sandbox.midtrans.com/settings/config_info
+https://divisidev.com/post/laravel-midtrans-register-akun-get-api-key
