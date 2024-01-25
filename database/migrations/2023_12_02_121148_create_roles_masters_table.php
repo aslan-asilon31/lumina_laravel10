@@ -18,8 +18,8 @@ class CreateRolesMastersTable extends Migration
             $table->string('roles_id')->nullable();
             $table->string('status_id')->nullable();
             $table->string('name')->nullable();
-            $table->string('lang');
-            $table->string('lang_id');
+            $table->string('lang')->nullable();
+            $table->string('lang_id')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

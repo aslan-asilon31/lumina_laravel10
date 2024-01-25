@@ -11,15 +11,14 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
     <!-- endinject -->
-    <!-- Plugin css for this page -->
-    <!-- End plugin css for this page -->
-    <!-- inject:css -->
-    <!-- endinject -->
+    
     <!-- Layout styles -->
     @stack('css')
     <link rel="stylesheet" href="{{ asset('backend/assets/css/style.css'); }}">
     <!-- End layout styles -->
-    <link rel="shortcut icon" href="{{ asset('backend/assets/images/favicon.ico'); }}" />
+       <!--=============== FAVICON ===============-->
+    {{-- <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon"> --}}
+    <link rel="shortcut icon" href="{{ asset('frontend/img/favicon.png'); }}" />
   </head>
   <body>
     <div class="container-scroller">
@@ -47,11 +46,12 @@
             <li class="nav-item nav-profile dropdown">
               <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
                 <div class="nav-profile-img">
-                  <img src="{{ asset('backend/assets/images/faces/face1.jpg'); }}" alt="image">
+                  <img src="{{ asset('aslan1.jpeg'); }}" alt="image">
                   <span class="availability-status online"></span>
                 </div>
                 <div class="nav-profile-text">
-                  <p class="mb-1 text-black">{{ Auth::user()->name ? Auth::user()->name : 'hello' }}</p>
+                  {{-- <p class="mb-1 text-black">{{ Auth::user()->name ? Auth::user()->name : 'hello' }}</p> --}}
+                  <p class="mb-1 text-black">Hello</p>
                 </div>
               </a>
               <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
@@ -77,7 +77,7 @@
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item preview-item">
                   <div class="preview-thumbnail">
-                    <img src="{{ asset('backend/assets/images/faces/face4.jpg'); }}" alt="image" class="profile-pic">
+                    <img src="{{ asset('aslan1.jpeg'); }}" alt="image" class="profile-pic">
                   </div>
                   <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
                     <h6 class="preview-subject ellipsis mb-1 font-weight-normal">Mark send you a message</h6>
@@ -87,7 +87,7 @@
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item preview-item">
                   <div class="preview-thumbnail">
-                    <img src="{{ asset('backend/assets/images/faces/face2.jpg'); }}" alt="image" class="profile-pic">
+                    <img src="{{ asset('aslan1.jpeg'); }}" alt="image" class="profile-pic">
                   </div>
                   <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
                     <h6 class="preview-subject ellipsis mb-1 font-weight-normal">Cregh send you a message</h6>
@@ -97,7 +97,7 @@
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item preview-item">
                   <div class="preview-thumbnail">
-                    <img src="{{ asset('backend/assets/images/faces/face3.jpg'); }}" alt="image" class="profile-pic">
+                    <img src="{{ asset('aslan1.jpeg'); }}" alt="image" class="profile-pic">
                   </div>
                   <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
                     <h6 class="preview-subject ellipsis mb-1 font-weight-normal">Profile picture updated</h6>
@@ -179,25 +179,25 @@
             <li class="nav-item nav-profile">
               <a href="#" class="nav-link">
                 <div class="nav-profile-image">
-                  <img src="{{ asset('backend/assets/images/faces/face1.jpg'); }}" alt="profile">
+                  <img src="{{ asset('aslan1.jpeg'); }}" alt="profile">
                   <span class="login-status online"></span>
                   <!--change to offline or busy as needed-->
                 </div>
                 <div class="nav-profile-text d-flex flex-column">
-                  <span class="font-weight-bold mb-2">{{ Auth::user()->name ? Auth::user()->name : 'hello' }}</span>
-                  <span class="text-secondary text-small">{{ Auth::user()->role ? Auth::user()->role : '' }}</span>
+                  <span class="font-weight-bold mb-2">hello</span>
+                  <span class="text-secondary text-small">hello</span>
                 </div>
                 <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/home">
+              <a class="nav-link" href="/dashboard">
                 <span class="menu-title">Dashboard</span>
                 <i class="mdi mdi-home menu-icon"></i>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('users.index') }}">
+              <a class="nav-link" href="{{ route('transactions.index') }}">
                 <span class="menu-cash-multiple">Transaction</span>
                 <i class="mdi mdi-account menu-icon"></i>
               </a>
@@ -209,9 +209,9 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('users.index') }}">
-                <span class="menu-title">User</span>
-                <i class="mdi mdi-account menu-icon"></i>
+              <a class="nav-link" href="{{ route('products.index') }}">
+                <span class="menu-title">Product</span>
+                <i class="mdi mdi-shopping menu-icon"></i>
               </a>
             </li>
             <li class="nav-item">
@@ -226,10 +226,16 @@
                     <li class="nav-item"> <a class="nav-link" href="{{ route('rolemasters.index') }}">Role Master</a></li>
                     <li class="nav-item"> <a class="nav-link" href="{{ route('brandmasters.index') }}">Brand Master</a></li>
                     <li class="nav-item"> <a class="nav-link" href="{{ route('imagemasters.index') }}">Gallery Master</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('bankmasters.index') }}">Bank Master</a></li>
+                    {{-- <li class="nav-item"> <a class="nav-link" href="{{ route('bankmasters.index') }}">Bank Master</a></li> --}}
                     <li class="nav-item"> <a class="nav-link" href="{{ route('regionmasters.index') }}">Region Master</a></li>
                   </ul>
                 </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('backup.index') }}">
+                  <span class="menu-title">Backup Data</span>
+                  <i class="mdi mdi-database menu-icon"></i>
+                </a>
               </li>
             <li class="nav-item">
                 <li class="nav-item dropdown">
