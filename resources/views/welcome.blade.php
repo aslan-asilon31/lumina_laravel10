@@ -65,6 +65,16 @@
                <li class="nav__item">
                   <a href="#products" class="nav__link">Products</a>
                </li>
+
+               <li class="nav__item">
+                  <select class="nav__select" onchange="window.location.href=this.value">
+                      <option value="{{ url('en') }}" {{ app()->getLocale() == 'en' ? 'selected' : '' }}>English </option>
+                      <option value="{{ url('jp') }}" {{ app()->getLocale() == 'jp' ? 'selected' : '' }}>Japanese</option>
+                      <option value="{{ url('id') }}" {{ app()->getLocale() == 'id' ? 'selected' : '' }}>Indonesian</option>
+                  </select>
+              </li>
+
+
             </ul>
 
             <!-- Close button -->
@@ -95,7 +105,7 @@
             <div class="home__content grid">
                <div class="home__data">
                   <h3 class="home__subtitle">
-                     The best light bulbs
+                     {{ __('The best light bulbs') }}
                   </h3>
 
                   <h1 class="home__title">

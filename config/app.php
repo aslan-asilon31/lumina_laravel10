@@ -83,7 +83,8 @@ return [
     |
     */
 
-    'locale' => 'id',
+    // 'locale' => 'id',
+    'locale' => 'en',
 
     /*
     |--------------------------------------------------------------------------
@@ -95,6 +96,12 @@ return [
     | the language folders that are provided through your application.
     |
     */
+
+    'available_locales' => [
+        'English' => 'en',
+        'Indonesia' => 'id',
+        'Japanese' => 'jp',
+    ],
 
     'fallback_locale' => 'en',
 

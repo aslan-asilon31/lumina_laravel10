@@ -83,9 +83,9 @@ Route::post('delete-stockmasters', [stockMasterController::class,'destroy']);
 Route::get('stockmasters-list', [stockMasterController::class,'getdata'])->name('stockmasters.list');
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 
 
@@ -93,3 +93,16 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+
+Route::get('/{locale?}', function ($locale = 'en') {
+    // Check if the provided locale is valid
+    $availableLocales = array_values(config('app.available_locales'));
+    if (isset($locale) && in_array($locale, $availableLocales)) {
+        app()->setLocale($locale);
+    } else {
+        // If the provided locale is not valid, redirect to the default locale (in this case, 'en')
+        return redirect('/' . config('app.available_locales')['English']);
+    }
+
+    return view('welcome');
+});
