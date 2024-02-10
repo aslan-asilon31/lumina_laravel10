@@ -519,7 +519,7 @@ body.dark-theme {
 }
 
 .popular__price {
-  font-size: var(--h1-font-size);
+  font-size: var(--h3-font-size);
 }
 
 .popular__price span {

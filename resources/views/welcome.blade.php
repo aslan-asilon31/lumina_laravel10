@@ -47,23 +47,23 @@
          <div class="nav__menu" id="nav-menu">
             <ul class="nav__list">
                <li class="nav__item">
-                  <a href="#home" class="nav__link active-link">Home</a>
+                  <a href="#home" class="nav__link active-link">{{ __('Home') }}</a>
                </li>
 
                <li class="nav__item">
-                  <a href="#popular" class="nav__link">Popular</a>
+                  <a href="#popular" class="nav__link">{{ __('Popular') }}</a>
                </li>
 
                <li class="nav__item">
-                  <a href="/product-search-detail" class="nav__link">Product</a>
+                  <a href="/product-search-detail" class="nav__link">{{ __('Product Search') }}</a>
                </li>
 
                <li class="nav__item">
-                  <a href="#choose" class="nav__link">Choose</a>
+                  <a href="#choose" class="nav__link">{{ __('Choose') }}</a>
                </li>
 
                <li class="nav__item">
-                  <a href="#products" class="nav__link">Products</a>
+                  <a href="#products" class="nav__link">{{ __('Products') }}</a>
                </li>
 
                <li class="nav__item">
@@ -109,17 +109,17 @@
                   </h3>
 
                   <h1 class="home__title">
-                     Unique Light <br>
-                     For You Home
+                     {{ __('Unique Light') }} <br>
+                     {{ __('For You Home') }} 
                   </h1>
 
                   <div class="home__buttons">
                      <a href="#" class="button">
-                        Discover Now
+                        {{ __('Discover Now') }}
                      </a>
 
                      <a href="#" class="button__link">
-                        <i class="ri-play-circle-line"></i> Watch Video
+                        <i class="ri-play-circle-line"></i> {{ __('Watch Video') }}
                      </a>
                   </div>
                </div>
@@ -130,7 +130,7 @@
                         9K<span>+</span>
                      </h3>
                      <span class="home__info-subtitle">
-                        Premium <br> Product
+                        {{ __('Premium') }} <br> {{ __('Product') }}
                      </span>
                   </div>
 
@@ -139,7 +139,7 @@
                         2K<span>+</span>
                      </h3>
                      <span class="home__info-subtitle">
-                        Happy <br> Customer
+                        {{ __('Happy') }} <br> {{ __('Customer') }}
                      </span>
                   </div>
 
@@ -148,7 +148,7 @@
                         28<span>+</span>
                      </h3>
                      <span class="home__info-subtitle">
-                        Awards <br> Winning
+                        {{ __('Awards') }} <br> {{ __('Winning') }}
                      </span>
                   </div>
                </div>
@@ -171,11 +171,10 @@
       <section class="popular section" id="popular">
          <div class="popular__container container">
             <div class="popular__data">
-               <h2 class="section__title">Popular Product</h2>
+               <h2 class="section__title">{{ __('Popular') }}  {{ __('Product') }} </h2>
 
                <p class="popular__description">
-                  Find our best products faster and get the
-                  quality lights we have for you.
+                  {{ __('Find our best products faster and get the quality lights we have for you.') }}
                </p>
             </div>
 
@@ -189,7 +188,7 @@
                      <h3 class="popular__name">Modern Light</h3>
                      <span class="popular__subtitle">Hanging Light</span>
                      <h3 class="popular__price">
-                        <span>Rp </span>100.000
+                        <span>{{ __('Rp') }} </span>100.000
                      </h3>
 
                      <button class="popular__button">
@@ -205,7 +204,7 @@
                      <h3 class="popular__name">Industrial Light</h3>
                      <span class="popular__subtitle">Hanging Light</span>
                      <h3 class="popular__price">
-                        <span>Rp </span>100.000
+                        <span>{{ __('Rp') }} </span>100.000
                      </h3>
 
                      <button class="popular__button">
@@ -221,7 +220,7 @@
                      <h3 class="popular__name">Superbolw Light</h3>
                      <span class="popular__subtitle">Hanging Light</span>
                      <h3 class="popular__price">
-                        <span>Rp </span>100.000
+                        <span>{{ __('Rp') }} </span>100.000
                      </h3>
 
                      <button class="popular__button">
@@ -237,7 +236,7 @@
                      <h3 class="popular__name">Ultrawide Light</h3>
                      <span class="popular__subtitle">Hanging Light</span>
                      <h3 class="popular__price">
-                        <span>Rp </span>100.000
+                        <span>{{ __('Rp') }} </span>100.000
                      </h3>
 
                      <button class="popular__button">
@@ -253,7 +252,7 @@
                      <h3 class="popular__name">Roundness Light</h3>
                      <span class="popular__subtitle">Hanging Light</span>
                      <h3 class="popular__price">
-                        <span>Rp </span>100.000
+                        <span>{{ __('Rp') }} </span>100.000
                      </h3>
 
                      <button class="popular__button">
@@ -280,7 +279,7 @@
             <div class="choose__image">
                <div class="choose__blob">
                   <img src="{{asset('frontend/img/choose-lamp.png')}}" alt="choose image" class="choose__img">
-                  <h1 class="choose__blob-title">LIGHT</h1>
+                  <h1 class="choose__blob-title"></h1>
                </div>
 
                <div class="choose__shadow"></div>
@@ -288,12 +287,10 @@
 
             <div class="choose__content">
                <div class="choose__data">
-                  <h2 class="section__title">Why Choose Us</h2>
+                  <h2 class="section__title"> {{ __('Why Choose Us') }}</h2>
 
                   <p class="choose__description">
-                     Our products have won numerous awards
-                     and we can guarantee the unlimited
-                     quality of our products.
+                     {{ __('Our products have won numerous awards and we can guarantee the unlimited quality of our products.') }}
                   </p>
                </div>
 
@@ -303,14 +300,12 @@
                         <div class="choose__faq-icon">
                            <i class="ri-add-line"></i>
                         </div>
-                        <h3 class="choose__faq-title">Frequently New Design</h3>
+                        <h3 class="choose__faq-title">{{ __('Frequently New Design') }}</h3>
                      </div>
 
                      <div class="choose__faq-content">
                         <p class="choose__faq-description">
-                           We make new designs every year,
-                           fashion designs, trending and of
-                           the best quality.
+                           {{ __('We make new designs every year, fashion designs, trending and of the best quality.') }}
                         </p>
                      </div>
                   </div>
@@ -320,14 +315,12 @@
                         <div class="choose__faq-icon">
                            <i class="ri-add-line"></i>
                         </div>
-                        <h3 class="choose__faq-title">Original Production</h3>
+                        <h3 class="choose__faq-title">{{ __('Original Production') }}</h3>
                      </div>
 
                      <div class="choose__faq-content">
                         <p class="choose__faq-description">
-                           We are the industrial chain of
-                           quality lighting products and offer
-                           the most advantageous price.
+                           {{ __('We are the industrial chain of quality lighting products and offer the most advantageous price.') }}
                         </p>
                      </div>
                   </div>
@@ -337,14 +330,12 @@
                         <div class="choose__faq-icon">
                            <i class="ri-add-line"></i>
                         </div>
-                        <h3 class="choose__faq-title">Production With Large Stock</h3>
+                        <h3 class="choose__faq-title">{{ __('Production With Large Stock') }}</h3>
                      </div>
 
                      <div class="choose__faq-content">
                         <p class="choose__faq-description">
-                           You will not be left without the lamp
-                           you chose, we have a large stock
-                           possible in all models.
+                           {{ __('You will not be left without the lamp you chose, we have a large stock possible in all models.') }}
                         </p>
                      </div>
                   </div>
@@ -354,14 +345,12 @@
                         <div class="choose__faq-icon">
                            <i class="ri-add-line"></i>
                         </div>
-                        <h3 class="choose__faq-title">Professional Quality Control</h3>
+                        <h3 class="choose__faq-title">{{ __('Professional Quality Control') }}</h3>
                      </div>
 
                      <div class="choose__faq-content">
                         <p class="choose__faq-description">
-                           Our quality control does everything
-                           possible to send you the best
-                           possible product for your home.
+                           {{ __('Our quality control does everything possible to send you the best possible product for your home.') }}
                         </p>
                      </div>
                   </div>
@@ -376,7 +365,7 @@
             <div class="features__image">
                <div class="features__blob">
                   <img src="{{asset('frontend/img/features-lamp.png')}}" alt="features image" class="features__img">
-                  <h1 class="features__blob-title">LIGHT</h1>
+                  <h1 class="features__blob-title"></h1>
                </div>
 
                <div class="features__shadow"></div>
@@ -384,37 +373,35 @@
 
             <div class="features__content">
                <div class="features__data">
-                  <h2 class="section__title">Latest Features</h2>
+                  <h2 class="section__title">{{ __('Latest Features') }}</h2>
 
                   <p class="features__description">
-                     We always provide the latest and best
-                     features for your customer, don't worry, we
-                     provide the latest technology for you.
+                     {{ __("We always provide the latest and best features for your customer, don't worry, we provide the latest technology for you.") }}
                   </p>
                </div>
 
                <div class="features__info">
                   <div class="features__info-card">
                      <h3 class="features__info-title">
-                        Voltage <br> Settings
+                        {{ __('Voltage') }} <br> {{ __('Settings') }}
                      </h3>
                   </div>
 
                   <div class="features__info-card">
                      <h3 class="features__info-title">
-                        Application <br> Control
+                        {{ __('Application') }} <br> {{ __('Control') }}
                      </h3>
                   </div>
 
                   <div class="features__info-card">
                      <h3 class="features__info-title">
-                        Voice <br> Control
+                        {{ __('Voice') }} <br> {{ __('Control') }}
                      </h3>
                   </div>
 
                   <div class="features__info-card">
                      <h3 class="features__info-title">
-                        Schedule <br> Settings
+                        {{ __('Schedule') }} <br> {{ __('Settings') }}
                      </h3>
                   </div>
                </div>
@@ -426,11 +413,10 @@
       <section class="products section" id="products">
          <div class="products__container container grid">
             <div class="products__data">
-               <h2 class="section__title">Our Product</h2>
+               <h2 class="section__title">{{ __('Our Product') }}</h2>
 
                <p class="products__description">
-                  Discover all our unique products that
-                  are suitable for your home.
+                  {{ __('Discover all our unique products that are suitable for your home.') }}
                </p>
             </div>
 
@@ -443,7 +429,7 @@
                   <h3 class="products__name">Modern Light</h3>
                   <span class="products__subtitle">Hanging Light</span>
                   <h3 class="products__price">
-                     <span>Rp </span>100.000
+                     <span>{{ __('Rp') }} </span>100.000
                   </h3>
 
                   <button class="products__button">
@@ -459,7 +445,7 @@
                   <h3 class="products__name">Industrial Light</h3>
                   <span class="products__subtitle">Hanging Light</span>
                   <h3 class="products__price">
-                     <span>Rp </span>100.000
+                     <span>{{ __('Rp') }} </span>100.000
                   </h3>
 
                   <button class="products__button">
@@ -475,7 +461,7 @@
                   <h3 class="products__name">Superbolw Light</h3>
                   <span class="products__subtitle">Hanging Light</span>
                   <h3 class="products__price">
-                     <span>Rp </span>100.000
+                     <span>{{ __('Rp') }} </span>100.000
                   </h3>
 
                   <button class="products__button">
@@ -491,7 +477,7 @@
                   <h3 class="products__name">Ultrawide Light</h3>
                   <span class="products__subtitle">Hanging Light</span>
                   <h3 class="products__price">
-                     <span>Rp </span>100.000
+                     <span>{{ __('Rp') }} </span>100.000
                   </h3>
 
                   <button class="products__button">
@@ -507,7 +493,7 @@
                   <h3 class="products__name">Roundness Light</h3>
                   <span class="products__subtitle">Hanging Light</span>
                   <h3 class="products__price">
-                     <span>Rp </span>100.000
+                     <span>{{ __('Rp') }} </span>100.000
                   </h3>
 
                   <button class="products__button">
@@ -523,7 +509,7 @@
                   <h3 class="products__name">Stickness Light</h3>
                   <span class="products__subtitle">Hanging Light</span>
                   <h3 class="products__price">
-                     <span>Rp </span>100.000
+                     <span>{{ __('Rp') }} </span>100.000
                   </h3>
 
                   <button class="products__button">
@@ -539,7 +525,7 @@
                   <h3 class="products__name">Superjet Light</h3>
                   <span class="products__subtitle">Hanging Light</span>
                   <h3 class="products__price">
-                     <span>Rp </span>100.000
+                     <span>{{ __('Rp') }} </span>100.000
                   </h3>
 
                   <button class="products__button">
@@ -555,7 +541,7 @@
                   <h3 class="products__name">Nakedness Light</h3>
                   <span class="products__subtitle">Hanging Light</span>
                   <h3 class="products__price">
-                     <span>Rp </span>100.000
+                     <span>{{ __('Rp') }} </span>100.000
                   </h3>
 
                   <button class="products__button">
@@ -573,7 +559,7 @@
                <div class="join__image">
                   <div class="join__blob">
                      <img src="{{asset('frontend/img/join-lamp.png')}}" alt="join image" class="join__img">
-                     <h1 class="join__blob-title">LIGHT</h1>
+                     <h1 class="join__blob-title"></h1>
                   </div>
 
                   <div class="join__shadow"></div>
@@ -581,19 +567,19 @@
 
                <div class="join__content grid">
                   <div class="join__data">
-                     <h2 class="section__title">Get Started</h2>
+                     <h2 class="section__title">{{ __('Get Started') }}</h2>
 
                      <p class="join__description">
-                        Do not miss it, join us and get <br>
-                        interesting discounts with us.
+                        {{ __('Do not miss it, join us and get') }} <br>
+                        {{ __('interesting discounts with us.') }}
                      </p>
                   </div>
 
                   <form action="" class="join__form">
-                     <input type="email" placeholder="Enter your email" class="join__input">
+                     <input type="email" placeholder="{{ __('Enter your email') }}" class="join__input">
 
                      <button class="button join__button">
-                        Join Now
+                        {{ __('Join Now') }}
                      </button>
                   </form>
                </div>
@@ -608,69 +594,69 @@
          <div class="footer__content grid">
             <div>
                <a href="#" class="footer__logo">
-                  Lumina<span>Aslan</span>
+                  Lumina<span> Aslan</span>
                </a>
 
                <div class="footer__description">
-                  We have a vision to make <br>
-                  lighting evenly distributed to all <br>
-                  parts of the earth.
+                  {{ __('We have a vision to make') }} <br>
+                  {{ __('lighting evenly distributed to all') }} <br>
+                  {{ __('parts of the earth.') }}
                </div>
             </div>
 
             <div class="footer__data grid">
                <div>
-                  <h3 class="footer__title">About</h3>
+                  <h3 class="footer__title">{{ __('About') }}</h3>
 
                   <ul class="footer__links">
                      <li>
-                        <a href="#" class="footer__link">About Us</a>
+                        <a href="#" class="footer__link">{{ __('About Us') }}</a>
                      </li>
 
                      <li>
-                        <a href="#" class="footer__link">Features</a>
+                        <a href="#" class="footer__link">{{ __('Features') }}</a>
                      </li>
 
                      <li>
-                        <a href="#" class="footer__link">News & Blog</a>
+                        <a href="#" class="footer__link">{{ __('News & Blog') }}</a>
                      </li>
                   </ul>
                </div>
 
                <div>
-                  <h3 class="footer__title">Movement</h3>
+                  <h3 class="footer__title">{{ __('Movement') }}</h3>
 
                   <ul class="footer__links">
                      <li>
-                        <a href="#" class="footer__link">What Sunlight</a>
+                        <a href="#" class="footer__link">{{ __('What Lumina') }}</a>
                      </li>
 
                      <li>
-                        <a href="#" class="footer__link">Support Us</a>
+                        <a href="#" class="footer__link">{{ __('Support Us') }}</a>
                      </li>
                   </ul>
                </div>
 
                <div>
-                  <h3 class="footer__title">Company</h3>
+                  <h3 class="footer__title">{{ __('Company') }}</h3>
 
                   <ul class="footer__links">
                      <li>
-                        <a href="#" class="footer__link">Why Sunlight</a>
+                        <a href="#" class="footer__link">{{ __('Why Lumina') }}</a>
                      </li>
 
                      <li>
-                        <a href="#" class="footer__link">Capital</a>
+                        <a href="#" class="footer__link">{{ __('Capital') }}</a>
                      </li>
 
                      <li>
-                        <a href="#" class="footer__link">Security</a>
+                        <a href="#" class="footer__link">{{ __('Security') }}</a>
                      </li>
                   </ul>
                </div>
 
                <div>
-                  <h3 class="footer__title">Follow Us</h3>
+                  <h3 class="footer__title">{{ __('Follow Us') }}</h3>
 
                   <div class="footer__social">
                      <a href="https://www.facebook.com/" target="_blank" class="footer__social-link">
@@ -691,12 +677,12 @@
 
          <div class="footer__group">
             <div class="footer__terms">
-               <a href="#">Terms & Agreements</a>
-               <a href="#">Privacy Policy</a>
+               <a href="#">{{ __('Terms & Agreements') }}</a>
+               <a href="#">{{ __('Privacy Policy') }}</a>
             </div>
 
             <span class="footer__copy">
-               &#169; Copyright Lumina. All rights reserved
+               &#169; {{ __('Copyright') }} Lumina.{{ __('All rights reserved') }}
             </span>
          </div>
       </div>
