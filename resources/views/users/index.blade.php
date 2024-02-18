@@ -112,6 +112,7 @@
                         name: 'image',
                         render: function (data, type, row) {
                               if (data) {
+                              alert(data)
                                 return `<img src="{{ asset('${data}')}}" class="rounded" style="width: 50px;height:50px; ">`;
                               } else {
                                 return `<img src="{{ asset('avatar-3d/man4.png')}}" class="rounded" style="width: 50px;height:50px; ">`;

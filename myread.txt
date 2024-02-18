@@ -15,3 +15,7 @@ localhost : 8585
 
 https://dashboard.sandbox.midtrans.com/settings/config_info
 https://divisidev.com/post/laravel-midtrans-register-akun-get-api-key
+
+
+
+https://medium.com/@eloufirhatim/create-a-perfect-architecture-in-laravel-in-10-steps-a52817f3c92c

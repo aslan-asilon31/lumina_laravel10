@@ -274,7 +274,7 @@ body.dark-theme {
   display: flex;
   flex-direction: column;
   text-align: center;
-  row-gap: 2rem;
+  row-gap: 4rem;
 }
 
 .nav__link {
@@ -843,7 +843,7 @@ body.dark-theme {
 }
 
 .products__price {
-  font-size: var(--h1-font-size);
+  font-size: var(--h3-font-size);
 }
 
 .products__price span {
