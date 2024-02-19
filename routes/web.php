@@ -38,6 +38,7 @@ Route::get('/product-search-by-category', [ProductController::class, 'search_by_
 
 Route::get('/master-login', [MasterLoginController::class, 'index']);
 Route::get('/order', [OrderController::class, 'index']);
+Route::get('/order-detail', [OrderController::class, 'show']);
 Route::get('/backup', [BackupController::class, 'index'])->name('backup.index');
 Route::get('/backup-manual', [BackupController::class, 'backupManual'])->name('backup.manual');
 // Route::get('/users', [UserController::class, 'index'])->name('user.name');
