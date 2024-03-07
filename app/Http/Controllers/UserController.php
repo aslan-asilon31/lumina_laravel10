@@ -39,7 +39,6 @@ class UserController extends Controller
 
     public function getdata(){
 
-
         if(request()->ajax()) {
 
             $query = "SELECT a.user_id as user_id,a.name,a.email,c.image as image,a.created_at, b.name as role_name 

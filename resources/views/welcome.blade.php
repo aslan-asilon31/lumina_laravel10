@@ -17,64 +17,72 @@
    <!--=============== CSS ===============-->
    <link rel="stylesheet" href="{{ asset('frontend/assets/css/styles.css') }}">>
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
 
    <title>Lumina Shop</title>
 
    <style>
 
-   </style>
+  </style>
 </head>
 
 <body>
+
+
    <!--==================== HEADER ====================-->
    <header class="header" id="header">
+
+      <section class="before-nav container d-flex" >
+
+         <li class="nav__item_lang">
+       
+            <select class="nav__select nav__item_lang" onchange="window.location.href=this.value" id="languageSelector">
+                <option value="{{ url('en') }}" {{ app()->getLocale() == 'en' ? 'selected' : '' }}>English </option>
+                <option value="{{ url('jp') }}" {{ app()->getLocale() == 'jp' ? 'selected' : '' }}>Japanese</option>
+                <option value="{{ url('id') }}" {{ app()->getLocale() == 'id' ? 'selected' : '' }}>Indonesian</option>
+            </select>
+         </li>
+
+         <li class="nav__item">
+        </li>
+        
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         <li class="nav__item_lang" >
+            <span>English</span>
+         </li>
+
+
+      </section>
+      
       <nav class="nav container">
          <a href="#" class="nav__logo">
-            Lu<span>mina</span>
+            Lumina
          </a>
 
          <div class="nav__menu" id="nav-menu">
             <ul class="nav__list">
                <li class="nav__item">
-                  <a href="#home" class="nav__link active-link">Home</a>
-               </li>
-
-               <li class="nav__item">
-                  <a href="#popular" class="nav__link">Popular</a>
-               </li>
-
-               <li class="nav__item">
-                  <a href="#choose" class="nav__link">Choose</a>
-               </li>
-
-               <li class="nav__item">
-                  <a href="#products" class="nav__link">Products</a>
-               </li>
+                  <a href="#home" class="nav__link active-link">{{ __('Home') }}</a>
+              </li>
+      
+              <li class="nav__item">
+                  <a href="#popular" class="nav__link">{{ __('Popular') }}</a>
+              </li>
+      
+              <li class="nav__item">
+                  <a href="/product-search-detail" class="nav__link">{{ __('Product Search') }}</a>
+              </li>
+      
+              <li class="nav__item">
+                  <a href="#choose" class="nav__link">{{ __('Choose') }}</a>
+              </li>
+      
+              <li class="nav__item">
+                  <a href="#products" class="nav__link">{{ __('Products') }}</a>
+              </li>
 
                <li class="nav__item">
                   <a href="product_more.html" class="nav__link">Product Search</a>
-               </li>
-
-               <li class="nav__item">
-                  <div class="profile">
-                        <div class="user">
-                           <h3>Aslan Asilon</h3>
-                           <p style="font-weight:bold; color:white;">@aslan</p>
-                        </div>
-                        <div class="img-box">
-                           <img src="{{ asset('frontend/assets/img/man4.png') }}" alt="some user image">
-                        </div>
-                  </div>
-                  <div class="menu">
-                        <ul>
-                           <li><a href="#"><i class="ph-bold ph-user"></i>&nbsp;Profile</a></li>
-                           <li><a href="#"><i class="ph-bold ph-envelope-simple"></i>&nbsp;Inbox</a></li>
-                           <li><a href="#"><i class="ph-bold ph-gear-six"></i>&nbsp;Settings</a></li>
-                           <li><a href="#"><i class="ph-bold ph-question"></i>&nbsp;Help</a></li>
-                           <li><a href="#"><i class="ph-bold ph-sign-out"></i>&nbsp;Sign Out</a></li>
-                        </ul>
-                  </div>
                </li>
 
             </ul>
@@ -85,7 +93,7 @@
             </div>
          </div>
 
-         <div class="nav__buttons">
+         <div class="nav__buttons ">
             <!-- Theme change button -->
             <i class="ri-moon-line change-theme" id="theme-button"></i>
 
@@ -94,18 +102,152 @@
                <i class="ri-menu-line"></i>
             </div>
 
-            <a href="cart.html">
-                  <div class="d-flex align-items-center" style="display:flex; color:white;">
-                     3 <span class="fas fa-shopping-cart"></span> 
+            @if (!empty(@auth()->user()))
+               <li class="nav__item after_login nav__link" id="nav-profile" >
+                  <div class="profile">
+                        <div class="user">
+                           <h3 id="dropdown-profile-name"> <span id="dropdown-profile-name"></span> </h3>
+                        </div>
+                        <div class="img-box show-menu ">
+                           @if (!empty(@auth()->user()->image))
+                              <img src="{{ Storage::url('public/users/').auth()->user()->image }}" class="rounded">
+                           @else
+                              <img src="{{ asset('frontend/assets/img/man4.png')}}" class="rounded">
+                           @endif
+                        </div>
                   </div>
-            </a>
+                  <div class="menu">
+                        <ul>
+                           <li><a href="/dashboard"><i class="ph-bold ph-user"></i>&nbsp;My Account</a></li>
+                           <li><a href="/cart"><i class="ph-bold ph-user"></i>&nbsp;Cart (0)</a></li>
+                           <li><a href="/wishlist"><i class="ph-bold ph-user"></i>&nbsp;Wishlist</a></li>
+                           <hr>
+                           <li><a href="/logout"><i class="ph-bold ph-user"></i>&nbsp;Logout</a></li>
+                        </ul>
+                  </div>
+               </li>
+            @else
+               <li class="nav__item after_login nav__link" id="nav-profile" >
+                  <div class="profile">
+                        <div class="user">
+                           <h3 id="dropdown-profile-name"> <span id="dropdown-profile-name"></span> </h3>
+                        </div>
+                        <div class="img-box show-menu ">
+                           <img src="{{ asset('avatar-3d/anonymous.png') }}" alt="user image">
+                        </div>
+                  </div>
+                  <div class="menu">
+                        <ul>
+                           <li><a href="/login-new"><i class="ph-bold ph-user"></i>&nbsp;Login</a></li>
+                           <li><a href="/register-new"><i class="ph-bold ph-user"></i>&nbsp;Register</a></li>
+                        </ul>
+                  </div>
+               </li>
+            @endif
+
 
          </div>
+
       </nav>
+
+
+
    </header>
 
    <!--==================== MAIN ====================-->
    <main class="main">
+
+      
+      <!--==================== ChatBot dialog  ====================-->
+      <div class="chatbot" id="chatbotPopup">
+         <button class="close" onclick="closeChatbotPopup()">✖</button>
+         <img src="{{asset('chatbot_lumina.png')}}" alt="chatbot-img" />
+         <h2>Hai ! , I am Lumina Chatbot !</h2>
+         <p>We use Chatbot for improving user experience, analytics, and marketing.</p>
+         <button class="accept" onclick="showChatbotPopup1()">Let's Chat!</button>
+      </div>
+
+      <div class="chatbot1 " id="chatbotPopup1">
+         <div class="row container d-flex justify-content-center">
+             
+              <div class="box box-warning direct-chat direct-chat-warning" >
+                <div class="box-header with-border " style="display:flex;">
+                  <h3 class="box-title">Chat Messages</h3>
+
+                  <div class="box-tools pull-right">
+                    <button type="button" onclick="closeChatbotPopup1()" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i>
+                    </button>
+                  </div>
+                </div>
+              
+                <div class="box-body" style="width:350px;" >
+                  
+                  <div class="direct-chat-messages"  >
+                
+                    <div class="direct-chat-msg " style="background-color:hsl(15, 60%, 52%);; padding:15px;">
+                      <div class="direct-chat-info clearfix">
+                        <span class="direct-chat-name pull-left " style="background-color:purple;color:white;font-size;bolder;">Lumina Chatbot</span>
+                        <span class="direct-chat-timestamp pull-right">23 Jan 2:00 pm</span>
+                      </div>
+                        <div style="display:flex;">
+                           <img class="direct-chat-img" style="width:35px;" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="message user image">
+                        
+                           <div class="direct-chat-text" style="text-align:left;">
+                              <h5>Welcome to Lumina Lamp Store Service! </h5>
+                           </div> 
+                           
+                        </div>
+                        
+                           <div class="direct-chat-text" style="text-align:left;">
+                              🌟 <u><a href="#popular">Popular Product</a></u> 
+                              🌟 <u><a href="#products">Our Product</a></u> 
+                              🌟 <u><a href="/product_more">Advanced Search Product</a></u> 
+                           </div> 
+                    </div>
+                    
+                     <div class="direct-chat-msg right"  style="background-color:hsl(20, 68%, 80%) ; padding-top:2px;">
+                      <div class="direct-chat-info clearfix" style="text-align:right;">
+                        <span class="direct-chat-timestamp pull-left">23 Jan 2:05 pm</span>
+                        <span class="direct-chat-name pull-right" style="background-color:purple;color:white;font-size;bolder;">Sarah</span>
+                      </div>
+                        <div style="display:flex;justify-content: flex-end;">
+                           
+                           <div class="direct-chat-text" style="text-align:right;">
+                              <h5>Hello </h5>
+                           </div>
+                           <img class="direct-chat-img" style="width:35px;" src="https://img.icons8.com/office/36/000000/person-female.png" alt="message user image">
+
+                        </div>
+                     </div>
+                   
+
+                  </div>
+                 
+                </div>
+               
+                <div class="box-footer" style="background-color:#f0f0f0; margin-top:5px;">
+                  <form action="#" method="post">
+                    <div class="input-group">
+                      <input type="text" name="message" placeholder="Type Message ..." class="form-control">
+                      <span class="input-group-btn">
+                            <button type="button" class="btn btn-warning btn-flat">Send</button>
+                          </span>
+                    </div>
+                  </form>
+                </div>
+             
+              </div>
+           
+         </div>
+      </div> 
+
+      <div class="chatbot-image" onclick="showChatbotPopup1()">
+         <img src="{{asset('chatbot_lumina.png')}}" onclick="showChatbotPopup1()" alt="chatbot-img1" />
+      </div>
+
+
+      <!--==================== End ChatBot dialog ====================-->
+
       <!--==================== HOME ====================-->
       <section class="home section" id="home">
          <div class="home__bg"></div>
@@ -114,61 +256,60 @@
             <div class="home__content grid">
                <div class="home__data">
                   <h3 class="home__subtitle">
-                     The best light bulbs
+                     {{ __('The best light bulbs') }}
                   </h3>
 
                   <h1 class="home__title">
-                     Unique Light <br>
-                     For You Home
+                     {{ __('Unique Light') }} <br>
+                     {{ __('For You Home') }} 
                   </h1>
 
                   <div class="home__buttons">
                      <a href="#" class="button">
-                        Discover Now
+                        {{ __('Discover Now') }}
                      </a>
 
                      <a href="#" class="button__link">
-                        <i class="ri-play-circle-line"></i> Watch Video
+                        <i class="ri-play-circle-line"></i> {{ __('Watch Video') }}
                      </a>
                   </div>
                </div>
 
                <div class="home__info">
+                  <div>
+                     <h3 class="home__info-title">
+                        9K<span>+</span>
+                     </h3>
+                     <span class="home__info-subtitle">
+                        {{ __('Premium') }} <br> {{ __('Product') }}
+                     </span>
+                  </div>
 
-               <div>
-               <h3 class="home__info-title" id="premiumProductCount">
-                  0<span>+</span>
-               </h3>
-               <span class="home__info-subtitle">
-                  Premium <br> Product
-               </span>
-               </div>
+                  <div>
+                     <h3 class="home__info-title">
+                        2K<span>+</span>
+                     </h3>
+                     <span class="home__info-subtitle">
+                        {{ __('Happy') }} <br> {{ __('Customer') }}
+                     </span>
+                  </div>
 
-               <div>
-                  <h3 class="home__info-title" id="happyCustomerCount">
-                     0<span>+</span>
-                  </h3>
-                  <span class="home__info-subtitle">
-                     Happy <br> Customer
-                  </span>
-               </div>
-
-               <div>
-                  <h3 class="home__info-title" id="awardWinningCount">
-                     0<span>+</span>
-                  </h3>
-                  <span class="home__info-subtitle">
-                     Awards <br> Winning
-                  </span>
-               </div>
+                  <div>
+                     <h3 class="home__info-title">
+                        28<span>+</span>
+                     </h3>
+                     <span class="home__info-subtitle">
+                        {{ __('Awards') }} <br> {{ __('Winning') }}
+                     </span>
+                  </div>
                </div>
             </div>
 
             <div class="home__image">
-               <div class="home__blob"  >
-                  <img  src=" {{ asset('assets/img/home-lamp.png') }} " alt="home image" class="home__img">
+               <div class="home__blob">
+                  <img class=" animate__animated infinite-swing " src="{{asset('frontend/img/home-lamp.png')}}" alt="home image" class="home__img">
                   <h1 class="home__blob-title">
-                     
+                     {{-- LIGHT --}}
                   </h1>
                </div>
 
@@ -922,6 +1063,46 @@
       <i class="ri-arrow-up-line"></i>
    </a>
 
+   <!--========== Chatbot Js  ==========-->
+
+   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+   <script>
+
+         // Function to close the popup
+         function closeChatbotPopup() {
+               document.getElementById('chatbotPopup').style.display = 'none';
+         }
+         function closeChatbotPopup1() {
+               document.getElementById('chatbotPopup1').style.display = 'none';
+         }
+
+         // Function to show the popup after a delay
+         function showChatbotPopup() {
+               setTimeout(function () {
+                  document.getElementById('chatbotPopup').style.display = 'flex';
+               }, 1000);
+         }
+         // Function to show the popup after a delay
+         function showChatbotPopup1() {
+               setTimeout(function () {
+                  document.getElementById('chatbotPopup1').style.display = 'flex';
+                  document.getElementById('chatbotPopup').style.display = 'none';
+               }, 1000);
+         }
+   </script>
+   <script>
+      $(document).ready(function() {
+
+         showChatbotPopup();
+         document.getElementById('chatbotPopup1').style.display = 'none';
+
+      });
+   </script>
+
+   <!--========== EndChatbot Js  ==========-->
+
+
+   
    <!--=============== SCROLLREVEAL ===============-->
    <script src="{{ asset('frontend/assets/js/scrollreveal.min.js') }}"></script>
 
@@ -930,6 +1111,7 @@
 
    <!--=============== MAIN JS ===============-->
    <script src="{{ asset('frontend/assets/js/main.js') }}"></script>
+
 
 <script>
   function countTo(target, end, duration) {
@@ -1024,6 +1206,7 @@
 </script>
 
 <!-- ================================== END GSAP -->
+
 
 
 </body>

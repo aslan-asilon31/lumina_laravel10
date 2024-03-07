@@ -58,10 +58,34 @@
         </div>
 
         
+        {{-- <table class="table table-bordered" >
+          <thead>
+             <tr>
+                <th>Name</th>
+                <th>Image</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Action</th>
+             </tr>
+          </thead>
+          <tbody>
+            @foreach ($users as $item)
+              <tr>
+                <td>{{ $item->name }}</td>
+                <td>{{ $item->image == null ?? 'empty','exist' }}</td>
+                <td>{{ $item->email }}</td>
+                <td>{{ $item->role }}</td>
+              </tr>
+                
+            @endforeach
+
+          </tbody>
+       </table> --}}
+
+        
         <table class="table table-bordered" id="datatable-crud">
           <thead>
              <tr>
-                {{-- <th>Id</th> --}}
                 <th>Name</th>
                 <th>Image</th>
                 <th>Email</th>

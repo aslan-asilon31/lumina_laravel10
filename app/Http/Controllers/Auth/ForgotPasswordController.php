@@ -19,4 +19,9 @@ class ForgotPasswordController extends Controller
     */
 
     use SendsPasswordResetEmails;
+
+
+    public function forgot_password_new(){
+        return view('auth.forgot_password_new');
+    }
 }

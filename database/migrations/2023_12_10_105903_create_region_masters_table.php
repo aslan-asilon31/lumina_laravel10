@@ -18,6 +18,10 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->string('type')->nullable(); // prov/kab/kel/kec
             $table->string('desc')->nullable();
+            $table->string('lang')->default('en');
+            $table->string('lang_id')->nullable();
+            $table->string('created_by')->nullable();
+            $table->string('updated_by')->nullable();
             $table->timestamps();
         });
     }

@@ -16,6 +16,10 @@ return new class extends Migration
             $table->bigInteger('user_id')->nullable();
             $table->string('provider_id')->unique();
             $table->string('provider_name')->nullable();
+            $table->string('lang')->default('en');
+            $table->string('lang_id')->nullable();
+            $table->string('created_by')->nullable();
+            $table->string('updated_by')->nullable();
             $table->timestamps();
         });
     }

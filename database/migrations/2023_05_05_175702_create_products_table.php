@@ -17,12 +17,17 @@ return new class extends Migration
             $table->string('status_master_id')->nullable();
             $table->string('category_master_id')->nullable();
             $table->integer('price_master_id')->nullable();
+            $table->integer('image_master_id')->nullable();
             $table->string('name')->nullable();
             $table->string('barcode')->nullable();
             $table->integer('is_sold')->nullable();
             $table->string('size')->nullable();
             $table->integer('rating')->nullable();
             $table->text('wishlist')->nullable();
+            $table->string('lang')->default('en');
+            $table->string('lang_id')->nullable();
+            $table->string('created_by')->nullable();
+            $table->string('updated_by')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

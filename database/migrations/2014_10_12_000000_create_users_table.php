@@ -34,6 +34,8 @@ return new class extends Migration
             $table->string('wishlist')->nullable();
             $table->string('desc')->nullable();
             $table->string('country')->nullable();
+            $table->string('created_by')->default();
+            $table->string('updated_by')->nullable();
             $table->rememberToken();
             $table->softDeletes();
             $table->timestamps();

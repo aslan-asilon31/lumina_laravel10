@@ -3,1012 +3,609 @@
 @section('title','Dashboard Page')
 
 @section('content')
-<div class="col-lg-12 stretch-card">
-  @include('sweetalert::alert')
+@include('sweetalert::alert')
 
-  <div class="content-wrapper">
-
-
-    <div class="row">
-      <div class="col-md-4 stretch-card grid-margin">
-        <div class="card bg-gradient-danger card-img-holder text-white">
-          <div class="card-body">
-            <img src="{{ asset('backend/assets/images/dashboard/circle.svg') }}" class="card-img-absolute" alt="circle-image" />
-            <h2 class="font-weight-normal mb-3"> Transaction <i class="mdi mdi-chart-line mdi-24px float-right"></i>
-            </h2>
-            <h6 class="mb-5"><span id="TransactionPeriod"></span> 
-                <span id="TransactionAll"></span> <br> 
-                <span id="TransactionAllSum"></span> 
-                <span id="TransactionAllYesterday"></span> <br> 
-                <span id="TransactionAllSumYesterday"></span> 
-            </h6>
-            <div class="tooltip-container card-text">
-                <span class="tooltip-trigger" data-tooltip-src=""><i class="mdi mdi-information "></i>  </span>
-            </div>
-            <span id="transaction_price_change_percentage"></span>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 stretch-card grid-margin">
-        <div class="card bg-gradient-info card-img-holder text-white">
-          <div class="card-body">
-            <img src="{{ asset('backend/assets/images/dashboard/circle.svg') }}" class="card-img-absolute" alt="circle-image" />
-            <h2 class="font-weight-normal mb-3">Orders <i class="mdi mdi-bookmark-outline mdi-24px float-right"></i>
-            </h2>
-            <h6 class="mb-5"><span id="OrderAll"></span> <br> 
-                <span id="OrderAllSum"></span> 
-                <span id="OrderAllYesterday"></span> <br> 
-                <span id="OrderAllSumYesterday"></span> 
-            </h6>
-            <div class="tooltip-container card-text">
-                <span class="tooltip-trigger" data-tooltip-src=""><i class="mdi mdi-information "></i>  </span>
-            </div>
-            <span id="order_price_change_percentage"></span>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 stretch-card grid-margin">
-        <div class="card bg-gradient-success card-img-holder text-white">
-          <div class="card-body">
-            <img src="{{ asset('backend/assets/images/dashboard/circle.svg') }}" class="card-img-absolute" alt="circle-image" />
-            <h4 class="font-weight-normal mb-3">Net Income <i class="mdi mdi-diamond mdi-24px float-right"></i>
-            </h4>
-            <h2 class="mb-5"><span id="NetIncomeAll"></span></h2>
-            {{-- <h6 class="card-text">Increased by 5%</h6> --}}
-          </div>
-        </div>
-      </div>
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">Dashboard</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Dashboard v1</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
     </div>
-    
-    <div class="row">
-      <div class="col-md-12 grid-margin stretch-card">
-        <div class="card">
-          <div class="card-body">
-            <div class="clearfix">
-              <h4 class="card-title float-left">Transaction</h4>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3>150</h3>
+
+                <p>New Orders</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-bag"></i>
+              </div>
+              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
-            <div class="bg-white mb-1 rounded ">
-              <select id="timePeriodTransaction" class="btn btn-sm btn-outline-primary "  name="timePeriodTransaction">
-                  <option value="" >-</option>
-                  <option value="today" selected>today</option>
-                  <option value="week" >Week</option>
-                  <option value="month" >Month</option>
-                  <option value="quarter" >Quarter</option>
-                  <option value="semester" >Semester</option>
-                  <option value="year" >Year</option>
-              </select>
-              <input type="date" id="startDate" class="btn btn-sm btn-outline-primary ">
-              <input type="date" id="endDate" class="btn btn-sm btn-outline-primary ">
-              <button id="submitTimePeriodTransaction" class="btn btn-sm btn-primary"> Search </button>
-            </div>
-                <canvas id="DashboardChartTransactionToday"></canvas>
-                <canvas id="DashboardChartTransactionToday1"></canvas>
           </div>
-        </div>
-      </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h3>53<sup style="font-size: 20px">%</sup></h3>
 
-    </div>
-
-    <div class="row">
-      {{-- <div class="col-md-7 grid-margin stretch-card">
-        <div class="card">
-          <div class="card-body">
-            <div class="clearfix">
-              <h4 class="card-title float-left">Transaction Month</h4>
+                <p>Bounce Rate</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+              </div>
+              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
-                <div class="bg-white mb-1 rounded ">
-                  <select id="timePeriod" class="btn btn-sm btn-outline-primary " name="timePeriod">
-                      <option value="today" selected>today</option>
-                      <option value="week" >This Week</option>
-                      <option value="month" >This Month</option>
-                      <option value="quarter" >This Quarter</option>
-                      <option value="semester" >This Semester</option>
-                      <option value="year" >This Year</option>
-                  </select>
-                  <input type="date" id="startDate" class="btn btn-sm btn-outline-primary ">
-                  <input type="date" id="endDate" class="btn btn-sm btn-outline-primary ">
-                </div>
-
-                <canvas id="myChart"></canvas>
           </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <h3>44</h3>
+
+                <p>User Registrations</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person-add"></i>
+              </div>
+              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-danger">
+              <div class="inner">
+                <h3>65</h3>
+
+                <p>Unique Visitors</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-pie-graph"></i>
+              </div>
+              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
         </div>
-      </div> --}}
-      <div class="col-md-12 grid-margin stretch-card">
+        <!-- /.row -->
+        <!-- Main row -->
+        <div class="row">
+          <!-- Left col -->
+          <section class="col-lg-7 connectedSortable">
+            <!-- Custom tabs (Charts with tabs)-->
             <div class="card">
-              
-                <div class="card-body">
-
-                  <div class="bg-white mb-1 rounded ">
-                    <select id="timePeriodTransaction" class="btn btn-sm btn-outline-primary "  name="timePeriodTransaction">
-                        <option value="today" selected>today</option>
-                        <option value="week" >This Week</option>
-                        <option value="month" >This Month</option>
-                        <option value="quarter" >This Quarter</option>
-                        <option value="semester" >This Semester</option>
-                        <option value="year" >This Year</option>
-                    </select>
-                    <input type="date" id="startDate" class="btn btn-sm btn-outline-primary ">
-                    <input type="date" id="endDate" class="btn btn-sm btn-outline-primary ">
-                  </div>
-                  
-                    <h4 class="card-title">The Most Status Order</h4>
-                    <canvas id="status-chart-order"></canvas>
+              <div class="card-header">
+                <h3 class="card-title">
+                  <i class="fas fa-chart-pie mr-1"></i>
+                  Sales
+                </h3>
+                <div class="card-tools">
+                  <ul class="nav nav-pills ml-auto">
+                    <li class="nav-item">
+                      <a class="nav-link active" href="#revenue-chart" data-toggle="tab">Area</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#sales-chart" data-toggle="tab">Donut</a>
+                    </li>
+                  </ul>
                 </div>
+              </div><!-- /.card-header -->
+              <div class="card-body">
+                <div class="tab-content p-0">
+                  <!-- Morris chart - Sales -->
+                  <div class="chart tab-pane active" id="revenue-chart"
+                       style="position: relative; height: 300px;">
+                      <canvas id="revenue-chart-canvas" height="300" style="height: 300px;"></canvas>
+                   </div>
+                  <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
+                    <canvas id="sales-chart-canvas" height="300" style="height: 300px;"></canvas>
+                  </div>
+                </div>
+              </div><!-- /.card-body -->
             </div>
-     </div>
+            <!-- /.card -->
 
-    </div>
+            <!-- DIRECT CHAT -->
+            <div class="card direct-chat direct-chat-primary">
+              <div class="card-header">
+                <h3 class="card-title">Direct Chat</h3>
 
+                <div class="card-tools">
+                  <span title="3 New Messages" class="badge badge-primary">3</span>
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" title="Contacts" data-widget="chat-pane-toggle">
+                    <i class="fas fa-comments"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <!-- Conversations are loaded here -->
+                <div class="direct-chat-messages">
+                  <!-- Message. Default to the left -->
+                  <div class="direct-chat-msg">
+                    <div class="direct-chat-infos clearfix">
+                      <span class="direct-chat-name float-left">Sulaslan Setiawan</span>
+                      <span class="direct-chat-timestamp float-right">23 Jan 2:00 pm</span>
+                    </div>
+                    <!-- /.direct-chat-infos -->
+                    <img class="direct-chat-img" src="{{ asset('') }}backend/Dashboard-ERP/dist/img/user1-128x128.jpg" alt="message user image">
+                    <!-- /.direct-chat-img -->
+                    <div class="direct-chat-text">
+                      Is this template really for free? That's unbelievable!
+                    </div>
+                    <!-- /.direct-chat-text -->
+                  </div>
+                  <!-- /.direct-chat-msg -->
 
+                  <!-- Message to the right -->
+                  <div class="direct-chat-msg right">
+                    <div class="direct-chat-infos clearfix">
+                      <span class="direct-chat-name float-right">Sarah Bullock</span>
+                      <span class="direct-chat-timestamp float-left">23 Jan 2:05 pm</span>
+                    </div>
+                    <!-- /.direct-chat-infos -->
+                    <img class="direct-chat-img" src="{{ asset('') }}backend/Dashboard-ERP/dist/img/user3-128x128.jpg" alt="message user image">
+                    <!-- /.direct-chat-img -->
+                    <div class="direct-chat-text">
+                      You better believe it!
+                    </div>
+                    <!-- /.direct-chat-text -->
+                  </div>
+                  <!-- /.direct-chat-msg -->
 
+                  <!-- Message. Default to the left -->
+                  <div class="direct-chat-msg">
+                    <div class="direct-chat-infos clearfix">
+                      <span class="direct-chat-name float-left">Sulaslan Setiawan</span>
+                      <span class="direct-chat-timestamp float-right">23 Jan 5:37 pm</span>
+                    </div>
+                    <!-- /.direct-chat-infos -->
+                    <img class="direct-chat-img" src="{{ asset('') }}backend/Dashboard-ERP/dist/img/user1-128x128.jpg" alt="message user image">
+                    <!-- /.direct-chat-img -->
+                    <div class="direct-chat-text">
+                      Working with AdminLTE on a great new app! Wanna join?
+                    </div>
+                    <!-- /.direct-chat-text -->
+                  </div>
+                  <!-- /.direct-chat-msg -->
+
+                  <!-- Message to the right -->
+                  <div class="direct-chat-msg right">
+                    <div class="direct-chat-infos clearfix">
+                      <span class="direct-chat-name float-right">Sarah Bullock</span>
+                      <span class="direct-chat-timestamp float-left">23 Jan 6:10 pm</span>
+                    </div>
+                    <!-- /.direct-chat-infos -->
+                    <img class="direct-chat-img" src="{{ asset('') }}backend/Dashboard-ERP/dist/img/user3-128x128.jpg" alt="message user image">
+                    <!-- /.direct-chat-img -->
+                    <div class="direct-chat-text">
+                      I would love to.
+                    </div>
+                    <!-- /.direct-chat-text -->
+                  </div>
+                  <!-- /.direct-chat-msg -->
+
+                </div>
+                <!--/.direct-chat-messages-->
+
+                <!-- Contacts are loaded here -->
+                <div class="direct-chat-contacts">
+                  <ul class="contacts-list">
+                    <li>
+                      <a href="#">
+                        <img class="contacts-list-img" src="{{ asset('') }}backend/Dashboard-ERP/dist/img/user1-128x128.jpg" alt="User Avatar">
+
+                        <div class="contacts-list-info">
+                          <span class="contacts-list-name">
+                            Count Dracula
+                            <small class="contacts-list-date float-right">2/28/2015</small>
+                          </span>
+                          <span class="contacts-list-msg">How have you been? I was...</span>
+                        </div>
+                        <!-- /.contacts-list-info -->
+                      </a>
+                    </li>
+                    <!-- End Contact Item -->
+                    <li>
+                      <a href="#">
+                        <img class="contacts-list-img" src="{{ asset('') }}backend/Dashboard-ERP/dist/img/user7-128x128.jpg" alt="User Avatar">
+
+                        <div class="contacts-list-info">
+                          <span class="contacts-list-name">
+                            Sarah Doe
+                            <small class="contacts-list-date float-right">2/23/2015</small>
+                          </span>
+                          <span class="contacts-list-msg">I will be waiting for...</span>
+                        </div>
+                        <!-- /.contacts-list-info -->
+                      </a>
+                    </li>
+                    <!-- End Contact Item -->
+                    <li>
+                      <a href="#">
+                        <img class="contacts-list-img" src="{{ asset('') }}backend/Dashboard-ERP/dist/img/user3-128x128.jpg" alt="User Avatar">
+
+                        <div class="contacts-list-info">
+                          <span class="contacts-list-name">
+                            Nadia Jolie
+                            <small class="contacts-list-date float-right">2/20/2015</small>
+                          </span>
+                          <span class="contacts-list-msg">I'll call you back at...</span>
+                        </div>
+                        <!-- /.contacts-list-info -->
+                      </a>
+                    </li>
+                    <!-- End Contact Item -->
+                    <li>
+                      <a href="#">
+                        <img class="contacts-list-img" src="{{ asset('') }}backend/Dashboard-ERP/dist/img/user5-128x128.jpg" alt="User Avatar">
+
+                        <div class="contacts-list-info">
+                          <span class="contacts-list-name">
+                            Nora S. Vans
+                            <small class="contacts-list-date float-right">2/10/2015</small>
+                          </span>
+                          <span class="contacts-list-msg">Where is your new...</span>
+                        </div>
+                        <!-- /.contacts-list-info -->
+                      </a>
+                    </li>
+                    <!-- End Contact Item -->
+                    <li>
+                      <a href="#">
+                        <img class="contacts-list-img" src="{{ asset('') }}backend/Dashboard-ERP/dist/img/user6-128x128.jpg" alt="User Avatar">
+
+                        <div class="contacts-list-info">
+                          <span class="contacts-list-name">
+                            John K.
+                            <small class="contacts-list-date float-right">1/27/2015</small>
+                          </span>
+                          <span class="contacts-list-msg">Can I take a look at...</span>
+                        </div>
+                        <!-- /.contacts-list-info -->
+                      </a>
+                    </li>
+                    <!-- End Contact Item -->
+                    <li>
+                      <a href="#">
+                        <img class="contacts-list-img" src="{{ asset('') }}backend/Dashboard-ERP/dist/img/user8-128x128.jpg" alt="User Avatar">
+
+                        <div class="contacts-list-info">
+                          <span class="contacts-list-name">
+                            Kenneth M.
+                            <small class="contacts-list-date float-right">1/4/2015</small>
+                          </span>
+                          <span class="contacts-list-msg">Never mind I found...</span>
+                        </div>
+                        <!-- /.contacts-list-info -->
+                      </a>
+                    </li>
+                    <!-- End Contact Item -->
+                  </ul>
+                  <!-- /.contacts-list -->
+                </div>
+                <!-- /.direct-chat-pane -->
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer">
+                <form action="#" method="post">
+                  <div class="input-group">
+                    <input type="text" name="message" placeholder="Type Message ..." class="form-control">
+                    <span class="input-group-append">
+                      <button type="button" class="btn btn-primary">Send</button>
+                    </span>
+                  </div>
+                </form>
+              </div>
+              <!-- /.card-footer-->
+            </div>
+            <!--/.direct-chat -->
+
+            <!-- TO DO List -->
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <i class="ion ion-clipboard mr-1"></i>
+                  To Do List
+                </h3>
+
+                <div class="card-tools">
+                  <ul class="pagination pagination-sm">
+                    <li class="page-item"><a href="#" class="page-link">&laquo;</a></li>
+                    <li class="page-item"><a href="#" class="page-link">1</a></li>
+                    <li class="page-item"><a href="#" class="page-link">2</a></li>
+                    <li class="page-item"><a href="#" class="page-link">3</a></li>
+                    <li class="page-item"><a href="#" class="page-link">&raquo;</a></li>
+                  </ul>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <ul class="todo-list" data-widget="todo-list">
+                  <li>
+                    <!-- drag handle -->
+                    <span class="handle">
+                      <i class="fas fa-ellipsis-v"></i>
+                      <i class="fas fa-ellipsis-v"></i>
+                    </span>
+                    <!-- checkbox -->
+                    <div  class="icheck-primary d-inline ml-2">
+                      <input type="checkbox" value="" name="todo1" id="todoCheck1">
+                      <label for="todoCheck1"></label>
+                    </div>
+                    <!-- todo text -->
+                    <span class="text">Design a nice theme</span>
+                    <!-- Emphasis label -->
+                    <small class="badge badge-danger"><i class="far fa-clock"></i> 2 mins</small>
+                    <!-- General tools such as edit or delete-->
+                    <div class="tools">
+                      <i class="fas fa-edit"></i>
+                      <i class="fas fa-trash-o"></i>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="handle">
+                      <i class="fas fa-ellipsis-v"></i>
+                      <i class="fas fa-ellipsis-v"></i>
+                    </span>
+                    <div  class="icheck-primary d-inline ml-2">
+                      <input type="checkbox" value="" name="todo2" id="todoCheck2" checked>
+                      <label for="todoCheck2"></label>
+                    </div>
+                    <span class="text">Make the theme responsive</span>
+                    <small class="badge badge-info"><i class="far fa-clock"></i> 4 hours</small>
+                    <div class="tools">
+                      <i class="fas fa-edit"></i>
+                      <i class="fas fa-trash-o"></i>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="handle">
+                      <i class="fas fa-ellipsis-v"></i>
+                      <i class="fas fa-ellipsis-v"></i>
+                    </span>
+                    <div  class="icheck-primary d-inline ml-2">
+                      <input type="checkbox" value="" name="todo3" id="todoCheck3">
+                      <label for="todoCheck3"></label>
+                    </div>
+                    <span class="text">Let theme shine like a star</span>
+                    <small class="badge badge-warning"><i class="far fa-clock"></i> 1 day</small>
+                    <div class="tools">
+                      <i class="fas fa-edit"></i>
+                      <i class="fas fa-trash-o"></i>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="handle">
+                      <i class="fas fa-ellipsis-v"></i>
+                      <i class="fas fa-ellipsis-v"></i>
+                    </span>
+                    <div  class="icheck-primary d-inline ml-2">
+                      <input type="checkbox" value="" name="todo4" id="todoCheck4">
+                      <label for="todoCheck4"></label>
+                    </div>
+                    <span class="text">Let theme shine like a star</span>
+                    <small class="badge badge-success"><i class="far fa-clock"></i> 3 days</small>
+                    <div class="tools">
+                      <i class="fas fa-edit"></i>
+                      <i class="fas fa-trash-o"></i>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="handle">
+                      <i class="fas fa-ellipsis-v"></i>
+                      <i class="fas fa-ellipsis-v"></i>
+                    </span>
+                    <div  class="icheck-primary d-inline ml-2">
+                      <input type="checkbox" value="" name="todo5" id="todoCheck5">
+                      <label for="todoCheck5"></label>
+                    </div>
+                    <span class="text">Check your messages and notifications</span>
+                    <small class="badge badge-primary"><i class="far fa-clock"></i> 1 week</small>
+                    <div class="tools">
+                      <i class="fas fa-edit"></i>
+                      <i class="fas fa-trash-o"></i>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="handle">
+                      <i class="fas fa-ellipsis-v"></i>
+                      <i class="fas fa-ellipsis-v"></i>
+                    </span>
+                    <div  class="icheck-primary d-inline ml-2">
+                      <input type="checkbox" value="" name="todo6" id="todoCheck6">
+                      <label for="todoCheck6"></label>
+                    </div>
+                    <span class="text">Let theme shine like a star</span>
+                    <small class="badge badge-secondary"><i class="far fa-clock"></i> 1 month</small>
+                    <div class="tools">
+                      <i class="fas fa-edit"></i>
+                      <i class="fas fa-trash-o"></i>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer clearfix">
+                <button type="button" class="btn btn-primary float-right"><i class="fas fa-plus"></i> Add item</button>
+              </div>
+            </div>
+            <!-- /.card -->
+          </section>
+          <!-- /.Left col -->
+          <!-- right col (We are only adding the ID to make the widgets sortable)-->
+          <section class="col-lg-5 connectedSortable">
+
+            <!-- Map card -->
+            <div class="card bg-gradient-primary">
+              <div class="card-header border-0">
+                <h3 class="card-title">
+                  <i class="fas fa-map-marker-alt mr-1"></i>
+                  Visitors
+                </h3>
+                <!-- card tools -->
+                <div class="card-tools">
+                  <button type="button" class="btn btn-primary btn-sm daterange" title="Date range">
+                    <i class="far fa-calendar-alt"></i>
+                  </button>
+                  <button type="button" class="btn btn-primary btn-sm" data-card-widget="collapse" title="Collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                </div>
+                <!-- /.card-tools -->
+              </div>
+              <div class="card-body">
+                <div id="world-map" style="height: 250px; width: 100%;"></div>
+              </div>
+              <!-- /.card-body-->
+              <div class="card-footer bg-transparent">
+                <div class="row">
+                  <div class="col-4 text-center">
+                    <div id="sparkline-1"></div>
+                    <div class="text-white">Visitors</div>
+                  </div>
+                  <!-- ./col -->
+                  <div class="col-4 text-center">
+                    <div id="sparkline-2"></div>
+                    <div class="text-white">Online</div>
+                  </div>
+                  <!-- ./col -->
+                  <div class="col-4 text-center">
+                    <div id="sparkline-3"></div>
+                    <div class="text-white">Sales</div>
+                  </div>
+                  <!-- ./col -->
+                </div>
+                <!-- /.row -->
+              </div>
+            </div>
+            <!-- /.card -->
+
+            <!-- solid sales graph -->
+            <div class="card bg-gradient-info">
+              <div class="card-header border-0">
+                <h3 class="card-title">
+                  <i class="fas fa-th mr-1"></i>
+                  Sales Graph
+                </h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn bg-info btn-sm" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn bg-info btn-sm" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                <canvas class="chart" id="line-chart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer bg-transparent">
+                <div class="row">
+                  <div class="col-4 text-center">
+                    <input type="text" class="knob" data-readonly="true" value="20" data-width="60" data-height="60"
+                           data-fgColor="#39CCCC">
+
+                    <div class="text-white">Mail-Orders</div>
+                  </div>
+                  <!-- ./col -->
+                  <div class="col-4 text-center">
+                    <input type="text" class="knob" data-readonly="true" value="50" data-width="60" data-height="60"
+                           data-fgColor="#39CCCC">
+
+                    <div class="text-white">Online</div>
+                  </div>
+                  <!-- ./col -->
+                  <div class="col-4 text-center">
+                    <input type="text" class="knob" data-readonly="true" value="30" data-width="60" data-height="60"
+                           data-fgColor="#39CCCC">
+
+                    <div class="text-white">In-Store</div>
+                  </div>
+                  <!-- ./col -->
+                </div>
+                <!-- /.row -->
+              </div>
+              <!-- /.card-footer -->
+            </div>
+            <!-- /.card -->
+
+            <!-- Calendar -->
+            <div class="card bg-gradient-success">
+              <div class="card-header border-0">
+
+                <h3 class="card-title">
+                  <i class="far fa-calendar-alt"></i>
+                  Calendar
+                </h3>
+                <!-- tools card -->
+                <div class="card-tools">
+                  <!-- button with a dropdown -->
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown" data-offset="-52">
+                      <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="dropdown-menu" role="menu">
+                      <a href="#" class="dropdown-item">Add new event</a>
+                      <a href="#" class="dropdown-item">Clear events</a>
+                      <div class="dropdown-divider"></div>
+                      <a href="#" class="dropdown-item">View calendar</a>
+                    </div>
+                  </div>
+                  <button type="button" class="btn btn-success btn-sm" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-success btn-sm" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+                <!-- /. tools -->
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body pt-0">
+                <!--The calendar -->
+                <div id="calendar" style="width: 100%"></div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </section>
+          <!-- right col -->
+        </div>
+        <!-- /.row (main row) -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
   </div>
-
-
-
-</div>
 @endsection
-
-@push('css')
-<style>
-    .tooltip-container {
-        position: relative;
-        display: inline-block;
-    }
-
-    .tooltip-trigger::before {
-        content: '';
-        display: none;
-        position: absolute;
-        width: auto; /* Set to 'auto' to allow the image to determine the width */
-        height: auto; /* Set to 'auto' to maintain image aspect ratio */
-    }
-
-    .tooltip-trigger:hover::before {
-    display: block;
-    width: 480px;
-    height: 50px; /* Set the height based on your requirement */
-    content: ''; /* Remove content attribute, as you are using background-image */
-    background-color: #323232;
-    background-image: url({{ asset('info/persentase_perubahan_harga_per_hari.png') }});
-    background-size: contain;
-    background-repeat: no-repeat; /* Prevent the background image from looping */
-    padding: 8px;
-    border-radius: 4px;
-    position: absolute;
-    bottom: 125%;
-    left: 50%;
-    z-index: 99 !important;
-    transform: translateX(-50%);
-}
-</style>
-    <link rel="stylesheet" href="{{ asset('backend/assets/vendors/mdi/css/materialdesignicons.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('backend/assets/vendors/css/vendor.bundle.base.css') }}">
-    <link rel="stylesheet" href="{{ asset('backend/assets/css/style.css') }}">
-    <link rel="shortcut icon" href="{{ asset('backend/assets/images/favicon.ico') }}" />
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-@endpush
-
-@push('js')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            loadDataToday()
-            $('#timePeriodTransaction').val('');
-            setDefaultDateRange()
-        });
-    </script>
-
-
-
-    <script src="{{ asset('backend/assets/vendors/js/file-upload.js') }}"></script>
-
-    <script src="{{ asset('backend/assets/vendors/js/vendor.bundle.base.js') }}"></script>
-    <script src="{{ asset('backend/assets/vendors/chart.js/Chart.min.js') }}"></script>
-    <script src="{{ asset('backend/assets/js/jquery.cookie.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('backend/assets/js/off-canvas.js') }}"></script>
-    <script src="{{ asset('backend/assets/js/hoverable-collapse.js') }}"></script>
-    <script src="{{ asset('backend/assets/js/misc.js') }}"></script>
-    <script src="{{ asset('backend/assets/js/dashboard.js') }}"></script>
-    <script src="{{ asset('backend/assets/js/todolist.js') }}"></script>
-
-    
-    <script>
-        function setDefaultDateRange() {
-            var endDate = new Date();
-            var startDate = new Date(endDate);
-            startDate.setDate(endDate.getDate() - 7); // Set start date to a week ago
-
-            // Format dates to 'YYYY-MM-DD'
-            var formattedStartDate = startDate.toISOString().split('T')[0];
-            var formattedEndDate = endDate.toISOString().split('T')[0];
-
-            // Set the values in the input fields
-            $('#startDate').val(formattedStartDate);
-            $('#endDate').val(formattedEndDate);
-        }
-
-        function updateOptionTimePeriods() {
-            var timePeriodSelect = $('#timePeriodTransaction').val();
-
-            // Depending on the selected time period, update the options or perform other actions
-            switch (timePeriodSelect) {
-                case '':
-                    var timePeriodSelect = $('#timePeriodTransaction').val(null);
-                    break;
-                case 'today':
-                    var timePeriodSelect = $('#timePeriodTransaction').val('today');
-                    break;
-                case 'week':
-                    var timePeriodSelect = $('#timePeriodTransaction').val('week');
-                    // Additional options or actions for 'week'
-                    break;
-                // Add cases for other time periods as needed
-            }
-        }
-
-        $('#timePeriodTransaction').on('change', function () {
-            // var startDate = $('#startDate').val(null);
-            // var endDate = $('#endDate').val(null);
-
-
-            $('#timePeriod').on('change', function () {
-                // Get the selected value from the dropdown
-                var selectedValue = $(this).val();
-
-                // Call the appropriate function based on the selected value
-                switch (selectedValue) {
-                    case 'today':
-                        loadDataToday();
-                        break;
-                    case 'week':
-                        loadDataWeek();
-                        break;
-                    case 'month':
-                        loadDataMonth();
-                        break;
-                    case 'quarter':
-                        loadDataQuarter();
-                        break;
-                    case 'semester':
-                        loadDataSemester();
-                        break;
-                    case 'year':
-                        loadDataYear();
-                        break;
-                    default:
-                        // Handle any additional cases or provide a default action
-                        break;
-                }
-            });
-
-        });
-
-        $('#startDate').on('change', function () {
-            $('#timePeriodTransaction').val('');
-            $('#TransactionAll').val('');
-        });
-
-        $('#endDate').on('change', function () {
-            $('#timePeriodTransaction').prop('selectedIndex', 0);
-            // loadDataTransaction();
-        });
-
-        function loadDataToday() {
-            $.ajax({
-                url: '/dashboard-today',
-                method: 'GET',
-                success: function (response) {
-
-                    // alert(response.priceChangePercentageOrder)
-                    var tolerance = 0.0001;
-
-                    if (!isNaN(response.transactions)) {
-                        $('#TransactionPeriod').hide();
-                        $('#TransactionAll').html('Today : '+response.transactions+' Transaction');
-                        $('#TransactionAllSum').html('Today Sum : '+formatRupiah(response.totalPriceToday));
-                        $('#TransactionAllYesterday').html('Yesterday : '+response.transaction_yesterday+' Transaction');
-                        $('#TransactionAllSumYesterday').html('Yesterday Sum : '+formatRupiah(response.totalPriceYesterday));
-                        if(response.priceChangePercentage > tolerance){
-                            $('#transaction_price_change_percentage').html(' <i class=" mdi mdi-arrow-up-bold " style="color:green;"></i> '+Math.ceil(response.transaction_price_change_percentage)+' % from Yesterday');
-                        }else if(response.priceChangePercentage < tolerance){
-                            $('#transaction_price_change_percentage').html('<i class=" mdi mdi-arrow-down-bold " style="color:red;"></i> '+Math.ceil(response.transaction_price_change_percentage)+' % from Yesterday');
-                        }else{
-                            console.log('')
-                        }
-                    } else {
-                        $('#TransactionPeriod').hide();
-                        $('#TransactionAll').html(0);
-                    }
-                    if (!isNaN(response.orders)) {
-                        $('#TransactionPeriod').hide();
-                        $('#OrderAll').html('Today : '+response.orders+' Order');
-                        $('#OrderAllSum').html('Today Sum : '+formatRupiah(response.totalPriceTodayOrder));
-                        $('#OrderAllYesterday').html('Yesterday : '+response.order_yesterday+' Order');
-                        $('#OrderAllSumYesterday').html('Yesterday Sum : '+formatRupiah(response.totalPriceYesterdayOrder));
-                        $('#NetIncomeAll').html(formatRupiah(response.totalPriceToday));
-                        if(response.priceChangePercentageOrder > tolerance){
-                            $('#order_price_change_percentage').html(' <i class=" mdi mdi-arrow-up-bold " style="color:green;"></i> '+Math.ceil(response.order_price_change_percentage)+' % from Yesterday');
-                        }else if(response.priceChangePercentageOrder < tolerance){
-                            $('#order_price_change_percentage').html('<i class=" mdi mdi-arrow-down-bold " style="color:red;"></i> '+Math.ceil(response.order_price_change_percentage)+' % from Yesterday');
-                        }else{
-                            $('#order_price_change_percentage').html(' '+Math.ceil(response.order_price_change_percentage)+' % from Yesterday');
-                        }
-                    } else {
-                        $('#TransactionPeriod').hide();
-                        $('#OrderAll').html(0);
-                    }
-                },
-                error: function (error) {
-                    $('#WeeklyTransaction').html(0);
-                }
-            });
-        }
-
-        function loadDataWeek() {
-            $.ajax({
-                url: '/dashboard-week',
-                method: 'GET',
-                success: function (response) {
-                    if (!isNaN(response.transactions)) {
-                        $('#TransactionPeriod').hide();
-                        $('#TransactionAll').html('This Week : '+response.transactions);
-                    } else {
-                        $('#TransactionPeriod').hide();
-                        $('#TransactionAll').html(0);
-                    }
-                    if (!isNaN(response.orders)) {
-                        $('#TransactionPeriod').hide();
-                        $('#OrderAll').html('This Week : '+response.orders);
-                    } else {
-                        $('#TransactionPeriod').hide();
-                        $('#OrderAll').html(0);
-                    }
-                },
-                error: function (error) {
-                    $('#WeeklyTransaction').html(0);
-                }
-            });
-        }
-
-        function loadDataMonth() {
-            $.ajax({
-                url: '/dashboard-month',
-                method: 'GET',
-                success: function (response) {
-                    if (!isNaN(response.transactions)) {
-                        $('#TransactionPeriod').hide();
-                        $('#TransactionAll').html('This Month : '+response.transactions);
-                    } else {
-                        $('#TransactionPeriod').hide();
-                        $('#TransactionAll').html(0);
-                    }
-                    if (!isNaN(response.orders)) {
-                        $('#TransactionPeriod').hide();
-                        $('#OrderAll').html('This Month : '+response.orders);
-                    } else {
-                        $('#TransactionPeriod').hide();
-                        $('#OrderAll').html(0);
-                    }
-                },
-                error: function (error) {
-                    $('#WeeklyTransaction').html(0);
-                }
-            });
-        }
-
-        function loadDataQuarter() {
-            $.ajax({
-                url: '/dashboard-quarter',
-                method: 'GET',
-                success: function (response) {
-                    if (!isNaN(response.transactions)) {
-                        $('#TransactionPeriod').hide();
-                        $('#TransactionAll').html('This Quarter : '+response.transactions);
-                    } else {
-                        $('#TransactionPeriod').hide();
-                        $('#TransactionAll').html(0);
-                    }
-                    if (!isNaN(response.orders)) {
-                        $('#TransactionPeriod').hide();
-                        $('#OrderAll').html('This Quarter : '+response.orders);
-                    } else {
-                        $('#TransactionPeriod').hide();
-                        $('#OrderAll').html(0);
-                    }
-                },
-                error: function (error) {
-                    $('#WeeklyTransaction').html(0);
-                }
-            });
-        }
-
-        function loadDataSemester() {
-            $.ajax({
-                url: '/dashboard-semester',
-                method: 'GET',
-                success: function (response) {
-                    if (!isNaN(response.transactions)) {
-                        $('#TransactionPeriod').hide();
-                        $('#TransactionAll').html('This Semester : '+response.transactions);
-                    } else {
-                        $('#TransactionPeriod').hide();
-                        $('#TransactionAll').html(0);
-                    }
-                    if (!isNaN(response.orders)) {
-                        $('#TransactionPeriod').hide();
-                        $('#OrderAll').html('This Semester : '+response.orders);
-                    } else {
-                        $('#TransactionPeriod').hide();
-                        $('#OrderAll').html(0);
-                    }
-                },
-                error: function (error) {
-                    $('#WeeklyTransaction').html(0);
-                }
-            });
-        }
-
-        function loadDataYear() {
-            $.ajax({
-                url: '/dashboard-year',
-                method: 'GET',
-                success: function (response) {
-                    if (!isNaN(response.transactions)) {
-                        $('#TransactionPeriod').hide();
-                        $('#TransactionAll').html('This Year : '+response.transactions);
-                    } else {
-                        $('#TransactionPeriod').hide();
-                        $('#TransactionAll').html(0);
-                    }
-                    if (!isNaN(response.orders)) {
-                        $('#TransactionPeriod').hide();
-                        $('#OrderAll').html('This Year : '+response.orders);
-                    } else {
-                        $('#TransactionPeriod').hide();
-                        $('#OrderAll').html(0);
-                    }
-                },
-                error: function (error) {
-                    $('#WeeklyTransaction').html(0);
-                }
-            });
-        }
-
-    </script>
-
-
-<script>
-    const labels = [
-        'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
-    ];
-
-    // Fetch data from the Laravel controller
-    fetch('/chart-data')
-        .then(response => response.json())
-        .then(data => {
-            // Convert data values to numbers
-            const numericData = data.data.map(value => Number(value));
-
-            const chartData = {
-                labels: labels,
-                datasets: [{
-                    label: 'Transaction By Month',
-                    backgroundColor: 'rgb(255, 99, 132)',
-                    borderColor: 'rgb(255, 99, 132)',
-                    data: numericData, // Use the fetched data here
-                }]
-            };
-
-            const config = {
-                type: 'line',
-                data: chartData,
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            ticks: {
-                                callback: function (value, index, values) {
-                                    return 'Rp ' + Number(value).toLocaleString(); // Format the value as Rp
-                                }
-                            }
-                        }
-                    }
-                }
-            };
-
-            new Chart(
-                document.getElementById('myChart'),
-                config
-            );
-        })
-        .catch(error => console.error('Error fetching chart data:', error));
-
-</script>
-
-{{-- Transaction Today by choose option  --}}
-
-<script>
-  const label_hours = Array.from({ length: 24 }, (_, i) => i + ':00'); // Labels for each hour
-  const label_days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  // ---------------month
-  // Get the date month from date 1 until last date
-    const currentDate = moment();
-    const currentMonth = currentDate.month();
-    const currentYear = currentDate.year();
-    const daysInMonth = moment(currentDate).daysInMonth();
-
-    const label_dates = Array.from({ length: daysInMonth }, (_, i) =>
-      moment(`${currentYear}-${currentMonth + 1}-${i + 1}`).format('YYYY-MM-DD')
-    );
-
-    // month name in a year
-    const label_month = [];
-
-    for (let month = 0; month < 12; month++) {
-        const monthName = moment().month(month).format('MMMM'); // Get month name
-        label_month.push(monthName);
-    }
-
-    const label_quarter1 = [];
-    const label_quarter2 = [];
-    const label_quarter3 = [];
-    const label_quarter4 = [];
-
-    for (let month = 0; month < 12; month++) {
-        const quarterNumber = Math.floor(month / 3) + 1; // Calculate quarter number
-        const quarterPrefix = "Q" + quarterNumber; // Add quarter prefix
-
-        const monthName = moment().month(month).format('MMMM'); // Get month name
-        const quarterMonth = `${quarterPrefix} ${monthName}`; // Combine quarter and month
-
-        // Separate months into Quarter 1 and Quarter 2 arrays
-        if (quarterNumber === 1) {
-            label_quarter1.push(quarterMonth);
-        } else if (quarterNumber === 2) {
-            label_quarter2.push(quarterMonth);
-        } else if (quarterNumber === 3) {
-            label_quarter3.push(quarterMonth);
-        } else if (quarterNumber === 4) {
-            label_quarter4.push(quarterMonth);
-        }
-    }
-
-    
-    const quater_value = ['Q1', 'Q2', 'Q3', 'Q4'];
-  // ---------------end month
-
-
-  fetch('/dashboard-chart-data-today')
-      .then(response => {
-          if (!response.ok) {
-              throw new Error('Network response was not ok');
-          }
-          return response.json();
-      })
-      .then(data => {
-          // Process the fetched data
-          const data_chart_per_hour = data.map(value => Number(value));
-
-          const chartData = {
-              labels: label_hours,
-              datasets: [{
-                  label: 'Transaction By Hour',
-                  backgroundColor: '#b66dff',
-                  borderColor: 'rgb(0, 255, 255)',
-                  data: data_chart_per_hour,
-              }]
-          };
-
-          const config = {
-              type: 'line',
-              data: chartData,
-              options: {
-                  scales: {
-                      y: {
-                          beginAtZero: true,
-                          ticks: {
-                              callback: function (value, index, values) {
-                                  return 'Rp ' + Number(value).toLocaleString('id-ID');
-                              }
-                          }
-                      }
-                  },
-              }
-          };
-
-          new Chart(
-              document.getElementById('DashboardChartTransactionToday'),
-              config
-          );
-      })
-      .catch(error => {
-          console.error('Error fetching chart data:', error);
-      });
-</script>
-
-
-{{-- Transaction Today automatic reload  --}}
-<script>
-    const label_hours = Array.from({ length: 24 }, (_, i) => i + ':00'); // Labels for each hour
-
-    fetch('/dashboard-chart-data-today')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            // Convert data values to numbers
-            const data_chart_per_hour = data.map(value => Number(value));
-
-            const chartData = {
-                labels: label_hours,
-                datasets: [{
-                    label: 'Transaction By Hour',
-                    backgroundColor: '#b66dff',
-                    borderColor: 'rgb(0, 255, 255)',
-                    data: data_chart_per_hour, // Use the fetched data here
-                }]
-            };
-
-            var options = {
-                // animation: false,
-                
-                function(label){return label.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}
-                
-            };
-
-            const config = {
-                type: 'line',
-                data: chartData,
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            ticks: {
-                                callback: function (value, index, values) {
-                                    return 'Rp ' + Number(value).toLocaleString('id-ID'); // Format the value as Rp
-                                }
-                            }
-                        }
-                    },
-
-                }
-            };
-
-            new Chart(
-                document.getElementById('DashboardChartTransactionToday1'),
-                config
-            );
-
-            // Show a success alert
-        })
-        .catch(error => {
-            console.error('Error fetching chart data:', error);
-            // Show an error alert
-        });
-
-    // Function to format numeric values as Rupiah
-    function formatRupiah(value) {
-        return 'Rp ' + Number(value).toLocaleString('id-ID');
-    }
-</script>
-
-
-
-
-<script>
-
-    fetch('/dashboard-status-chart-data-order') // Update the URL based on your Laravel route
-        .then(response => response.json())
-        .then(data => {
-            // Generate dynamic colors based on the length of the labels array
-            const dynamicColors = Array.from({ length: data.labels.length }, (_, index) => getRandomColor(index));
-
-            // Create a pie chart
-            const ctx = document.getElementById('status-chart-order').getContext('2d');
-            new Chart(ctx, {
-                type: 'doughnut',
-                data: {
-                    labels: data.labels,
-                    datasets: [{
-                        label: 'Status Orders',
-                        backgroundColor: dynamicColors,
-                        borderColor: dynamicColors,
-                        data: data.counts,
-                    }]
-                },
-                options: {
-                    // Your existing options
-                }
-            });
-        })
-        .catch(error => console.error('Error fetching status chart data:', error));
-
-        // Function to generate a random color
-        function getRandomColor(index) {
-            const colors = [
-                'rgb(255, 99, 132)',
-                'rgb(54, 162, 235)',
-                'rgb(255, 205, 86)',
-                'rgb(75, 192, 192)',
-                'rgb(153, 102, 255)',
-                'rgb(255, 159, 64)',
-            ];
-
-        return colors[index % colors.length];
-    }
-
-</script>
-
-
-<script>
-         $('#submitTimePeriodTransaction').on('click', function () {
-            // Get selected values
-            var timePeriod = $('#timePeriodTransaction').val();
-            var startDate = $('#startDate').val();
-            var endDate = $('#endDate').val();
-
-            // Make Ajax request
-            $.ajax({
-                url: 'dashboard-transaction-data', // Replace with your actual Laravel controller route
-                method: 'GET',
-                data: {
-                    timePeriod: timePeriod,
-                    startDate: startDate,
-                    endDate: endDate,
-                    // Add any other parameters you need to send
-                },
-                success: function (data) {
-                    $('#DashboardChartTransactionToday').hide();
-
-                    if(data.timePeriod == 'today') {
-                      const chartData = {
-                          labels: label_hours,
-                          datasets: [{
-                              label: 'Transaction By Hour',
-                              backgroundColor: '#b66dff',
-                              borderColor: 'rgb(0, 255, 255)',
-                              data: data.resultToday,
-                          }]
-                      };
-  
-                      const config = {
-                          type: 'line',
-                          data: chartData,
-                          options: {
-                              scales: {
-                                  y: {
-                                      beginAtZero: true,
-                                      ticks: {
-                                          callback: function (value, index, values) {
-                                              return 'Rp ' + Number(value).toLocaleString('id-ID');
-                                          }
-                                      }
-                                  }
-                              },
-                          }
-                      };
-  
-                      // Create the second chart
-                      new Chart(
-                          document.getElementById('DashboardChartTransactionToday1'),
-                          config
-                      );
-
-                    }else if(data.timePeriod == 'week' ){
-                      const chartData = {
-                          labels: label_days,
-                          datasets: [{
-                              label: 'Transaction By Week',
-                              backgroundColor: '#b66dff',
-                              borderColor: 'rgb(0, 255, 255)',
-                              data: data.resultWeek,
-                          }]
-                      };
-  
-                      const config = {
-                          type: 'line',
-                          data: chartData,
-                          options: {
-                              scales: {
-                                  y: {
-                                      beginAtZero: true,
-                                      ticks: {
-                                          callback: function (value, index, values) {
-                                              return 'Rp ' + Number(value).toLocaleString('id-ID');
-                                          }
-                                      }
-                                  }
-                              },
-                          }
-                      };
-  
-                      // Create the second chart
-                      new Chart(
-                          document.getElementById('DashboardChartTransactionToday1'),
-                          config
-                      );
-                    }else if(data.timePeriod == 'month' ){
-                      const chartData = {
-                          labels: label_month,
-                          datasets: [{
-                              label: 'Transaction By Month',
-                              backgroundColor: '#b66dff',
-                              borderColor: 'rgb(0, 255, 255)',
-                              data: data.resultMonth,
-                          }]
-                      };
-  
-                      const config = {
-                          type: 'line',
-                          data: chartData,
-                          options: {
-                              scales: {
-                                  y: {
-                                      beginAtZero: true,
-                                      ticks: {
-                                          callback: function (value, index, values) {
-                                              return 'Rp ' + Number(value).toLocaleString('id-ID');
-                                          }
-                                      }
-                                  }
-                              },
-                          }
-                      };
-  
-                      // Create the second chart
-                      new Chart(
-                          document.getElementById('DashboardChartTransactionToday1'),
-                          config
-                      );
-                    }else if(data.timePeriod == 'quarter' ){
-                      const chartData = {
-                          labels: quater_value,
-                          datasets: [{
-                              label: 'Transaction By Quarter',
-                              backgroundColor: '#b66dff',
-                              borderColor: 'rgb(0, 255, 255)',
-                              data: data.resultQuarter,
-                          }]
-                      };
-  
-                      const config = {
-                          type: 'line',
-                          data: chartData,
-                          options: {
-                              scales: {
-                                  y: {
-                                      beginAtZero: true,
-                                      ticks: {
-                                          callback: function (value, index, values) {
-                                              return 'Rp ' + Number(value).toLocaleString('id-ID');
-                                          }
-                                      }
-                                  }
-                              },
-                          }
-                      };
-  
-                      // Create the second chart
-                      new Chart(
-                          document.getElementById('DashboardChartTransactionToday1'),
-                          config
-                      );
-                    }else if(data.timePeriod == 'semester' ){
-                      const chartData = {
-                          labels: data.resultSemester.semester_name,
-                          datasets: [{
-                              label: 'Transaction By Semester',
-                              backgroundColor: '#b66dff',
-                              borderColor: 'rgb(0, 255, 255)',
-                              data: data.resultSemester.semester_value,
-                          }]
-                      };
-  
-                      const config = {
-                          type: 'line',
-                          data: chartData,
-                          options: {
-                              scales: {
-                                  y: {
-                                      beginAtZero: true,
-                                      ticks: {
-                                          callback: function (value, index, values) {
-                                              return 'Rp ' + Number(value).toLocaleString('id-ID');
-                                          }
-                                      }
-                                  }
-                              },
-                          }
-                      };
-  
-                      // Create the second chart
-                      new Chart(
-                          document.getElementById('DashboardChartTransactionToday1'),
-                          config
-                      );
-                    }else if(data.timePeriod == 'year' ){
-                      const chartData = {
-                          labels: data.resultYear.year_name_transaction,
-                          datasets: [{
-                              label: 'Transaction By Year',
-                              backgroundColor: '#b66dff',
-                              borderColor: 'rgb(0, 255, 255)',
-                              data: data.resultYear.year_sum_transaction,
-                          }]
-                      };
-  
-                      const config = {
-                          type: 'line',
-                          data: chartData,
-                          options: {
-                              scales: {
-                                  y: {
-                                      beginAtZero: true,
-                                      ticks: {
-                                          callback: function (value, index, values) {
-                                              return 'Rp ' + Number(value).toLocaleString('id-ID');
-                                          }
-                                      }
-                                  }
-                              },
-                          }
-                      };
-  
-                      // Create the second chart
-                      new Chart(
-                          document.getElementById('DashboardChartTransactionToday1'),
-                          config
-                      );
-                    }else{
-                      const chartData = {
-                          labels: label_days,
-                          datasets: [{
-                              label: 'Transaction By -',
-                              backgroundColor: '#b66dff',
-                              borderColor: 'rgb(0, 255, 255)',
-                              data: data.resultWeek,
-                          }]
-                      };
-  
-                      const config = {
-                          type: 'line',
-                          data: chartData,
-                          options: {
-                              scales: {
-                                  y: {
-                                      beginAtZero: true,
-                                      ticks: {
-                                          callback: function (value, index, values) {
-                                              return 'Rp ' + Number(value).toLocaleString('id-ID');
-                                          }
-                                      }
-                                  }
-                              },
-                          }
-                      };
-  
-                      // Create the second chart
-                      new Chart(
-                          document.getElementById('DashboardChartTransactionToday1'),
-                          config
-                      );
-                    }
-
-                  
-                },
-                error: function (xhr, status, error) {
-                    // Handle error
-                    console.error(xhr.responseText);
-                }
-            });
-        });
-</script>
-
-
-    
-@endpush

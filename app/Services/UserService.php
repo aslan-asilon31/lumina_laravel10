@@ -8,6 +8,7 @@ namespace App\Services;
 use App\Models\User;
 use App\Repositories\UserRepository;
 
+use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
 use Datatables;
 use DB;
@@ -26,6 +27,7 @@ class UserService
 
     public function getAllUsers()
     {
+        // return UserResource::collection(User::paginate());
         return $this->userRepository->getAllUsers();
     }
 

@@ -17,8 +17,10 @@ return new class extends Migration
             $table->string('status_id')->nullable();
             $table->string('name')->nullable();
             $table->string('desc')->nullable();
-            $table->string('lang')->nullable();
+            $table->string('lang')->default('en');
             $table->string('lang_id')->nullable();
+            $table->string('created_by')->nullable();
+            $table->string('updated_by')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

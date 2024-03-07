@@ -27,8 +27,10 @@ return new class extends Migration
             $table->integer('prod_amount')->nullable();
             $table->integer('total_price')->nullable();
             $table->integer('gross_total_price')->nullable();
-            $table->string('lang')->nullable();
+            $table->string('lang')->default('en');
             $table->string('lang_id')->nullable();
+            $table->string('created_by')->nullable();
+            $table->string('updated_by')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

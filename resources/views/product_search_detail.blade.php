@@ -14,7 +14,7 @@
             background: #eee;
         }
 
-        .btn {
+        .btn { 
             margin-bottom: 5px;
         }
 
