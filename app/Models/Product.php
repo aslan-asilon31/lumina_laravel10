@@ -32,18 +32,17 @@ class Product extends Model
 
   public function status()
   {
-      return $this->belongsTo(Status::class, 'status_id', 'id');
+    return $this->belongsTo(StatusMaster::class, 'status_id', 'id');
   }
-  
+
 
   public function price()
   {
-      return $this->belongsTo(Price::class, 'price_id', 'id');
+    return $this->belongsTo(Price::class, 'price_id', 'id');
   }
-  
+
   public function image()
   {
-      return $this->belongsTo(Image::class, 'image_id', 'id');
+    return $this->belongsTo(Image::class, 'image_id', 'id');
   }
-  
 }

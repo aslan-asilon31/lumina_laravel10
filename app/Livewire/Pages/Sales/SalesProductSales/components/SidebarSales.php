@@ -1,28 +1,17 @@
 <?php
 
-namespace App\Livewire\Pages\Sales\SalesProductSales\components;
+namespace App\Livewire\Pages\Sales\Components;
 
-use Livewire\Pages\Sales\SalesProductSales\components;
+use Livewire\Component;
 use App\Models\Company;
-
 
 class SidebarSales extends Component
 {
 
-  public $route = '';
-  public $companies;
-
-
-  public function mount()
-  {
-    $this->route = request()->route()->getName();
-    dd($this->route); // Debug route
-    $this->companies = Company::all();
-  }
 
   public function render()
   {
-    dd($this->companies);
+    $companies = Company::all();
     return view('livewire.pages.sales.components.sidebar-sales');
   }
 }

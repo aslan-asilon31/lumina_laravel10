@@ -15,6 +15,7 @@ class SalesProductSales extends Component
     $this->route = request()->route()->getName(); // Set initial route on mount
   }
 
+
   public function render()
   {
     $companies = Company::all();

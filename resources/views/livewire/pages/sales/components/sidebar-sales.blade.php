@@ -4,9 +4,15 @@
     @click.outside="sidebarToggle = false">
     <!-- SIDEBAR HEADER -->
 
+    <div class="flex items-center justify-center  gap-2 px-6 py-5.5 lg:py-6.5">
+      <a href="index.html">
+        <img src="{{ asset('/nerp.png') }}" class="w-16 h-16" alt="Logo NERP" />
+      </a>
+      <hr>
+    </div>
 
-    <livewire:components.menu-sidebar :companies="$companies" />
-    
+
+    <!-- {{-- <livewire:components.menu-sidebar /> --}} -->
 
     <!-- SIDEBAR HEADER -->
 
@@ -18,7 +24,6 @@
           <h3 class="mb-4 ml-4 text-sm font-medium text-bodydark2">MENU</h3>
 
           <ul class="mb-6 flex flex-col gap-1.5">
-
 
             <li>
               <a class="text-purple-300 hover:bg-purple-700 group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4"
@@ -41,8 +46,6 @@
                     fill="" />
                 </svg>
                 Dashboard Sales <x-star-off />
-
-
 
               </a>
             </li>

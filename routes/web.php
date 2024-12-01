@@ -48,7 +48,6 @@ Route::prefix('sales')->name('sales.')->group(function () {
   Route::get('/product-sales/{id}/edit', SalesProductSalesCrud::class)->name('product-sales-create');
   Route::get('/product-sales/{id}/destroy', SalesProductSalesCrud::class, 'destroy')->name('product-sales-create');
 
-
   Route::get('/report', SalesReport::class)->name('report');
   Route::get('/sub-extra-sales', SalesSubExtraSales::class)->name('sub-extra-sales');
   Route::get('/category', SalesSubExtraSales::class)->name('category');

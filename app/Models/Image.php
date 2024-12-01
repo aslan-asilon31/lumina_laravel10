@@ -9,9 +9,9 @@ class Image extends Model
 {
   use HasFactory;
 
-  protected $table = 'res_image'; 
-  protected $primaryKey = 'id'; 
-  protected $keyType = 'int'; 
+  protected $table = 'res_images';
+  protected $primaryKey = 'id';
+  protected $keyType = 'int';
   protected $fillable = [
     'name',
   ];
@@ -19,7 +19,6 @@ class Image extends Model
 
   public function products()
   {
-      return $this->hasMany(Product::class, 'image_id', 'id');
+    return $this->hasMany(Image::class, 'image_id', 'id');
   }
-
 }

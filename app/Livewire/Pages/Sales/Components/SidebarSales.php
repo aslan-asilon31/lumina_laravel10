@@ -3,18 +3,22 @@
 namespace App\Livewire\Pages\Sales\Components;
 
 use Livewire\Component;
+use App\Models\Company;
 
 class SidebarSales extends Component
 {
-  public $module;
+  public $companies;
 
-  public function mount($module)
+  public function mount()
   {
-    $this->module = $module;
+    $this->companies = Company::all(); // Ambil semua data perusahaan
   }
 
   public function render()
   {
-    return view('livewire.pages.sales.components.sidebar-sales');
+
+    return view('livewire.pages.sales.components.sidebar-sales', [
+      'companies' => $this->companies, // Pastikan data dikirim ke Blade
+    ]);
   }
 }

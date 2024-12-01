@@ -57,24 +57,35 @@ final class ProductTable extends PowerGridComponent
       <img width="24" height="24" src="https://img.icons8.com/nolan/64/edit-database.png" alt="edit-database"/>
         </a> 
       <br/>
-      <a href="/sales/product-sales/' . e($record->id) . '/destroy/" :isDestroy="true"  class=" m-4">
-      <img width="24" height="24" src="https://img.icons8.com/nolan/64/delete-forever.png" alt="delete-forever"/>
-      </a>
+
+    <a wire:click="destroy({{ e($record->id) }})" class="m-4">
+        <img width="24" height="24" src="https://img.icons8.com/nolan/64/delete-forever.png" alt="delete-forever"/>
+    </a>
+
       </div>
       ')
       ->add('id')
       ->add('name')
 
-      ->add('status', function($record) {
+      ->add('status', function ($record) {
         return $record->status ? $record->status->name : 'No Status'; // Menampilkan nama status terkait
       })
-            
-      ->add('price', function($record) {
-        return $record->price ? $record->price->price_selling_after : 'No price'; 
+
+      ->add('image', function ($record) {
+        // Periksa apakah gambar ada
+        return $record->image ?
+          '<img src="' . asset('storage/' . $record->image) . '" alt="Product Image" width="50">' :
+          'No image';
       })
 
-      ->add('price_before', function($record) {
-        return $record->price ? $record->price->price_selling : 'No price'; 
+
+      ->add('price', function ($record) {
+        return $record->price ? $record->price->price_selling_after : 'No price';
+      })
+
+
+      ->add('price_before', function ($record) {
+        return $record->price ? $record->price->price_selling : 'No price';
       })
 
       ->add('created_at_formatted', function ($dish) {
@@ -88,6 +99,9 @@ final class ProductTable extends PowerGridComponent
       Column::make(title: 'Action', field: 'action'),
 
       Column::make('Name', 'name')
+        ->sortable(),
+
+      Column::make('Image', 'image')
         ->sortable(),
 
       Column::make('Created By', 'created_by')

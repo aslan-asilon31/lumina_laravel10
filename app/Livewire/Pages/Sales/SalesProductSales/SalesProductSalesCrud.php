@@ -4,106 +4,86 @@ namespace App\Livewire\Pages\Sales\SalesProductSales;
 
 use App\Models\Product;
 use App\Models\Company;
-use Livewire\WithFileUploads; 
+use App\Models\Image;
+use Livewire\WithFileUploads;
 use App\Livewire\Pages\Sales\SalesProductSales\Forms\ProductForm;
 use Livewire\Component;
+use Illuminate\Support\Facades\Http;
+use App\Helpers\ImageUpload\Traits\WithImageUpload;
 
 class SalesProductSalesCrud extends Component
 {
+  use WithFileUploads;
+  use WithImageUpload;
 
   public $route = '';
+  public string $title = 'Product Sales';
+  public string $url = '/sales//product-sales';
 
+  private string $uploadFolderName = 'files/images/product-contents';
+  private string $baseImageName = 'product-content-image';
 
-  // #[\Livewire\Attributes\Locked]
-  public string $id = '';
+  #[\Livewire\Attributes\Locked]
+  public null|string $id = null;
   public string $name = '';
+  public $image = '';
   public $filepond = '';
-
-
   private  string $model = Product::class;
-
-  public ProductForm $ProductForm;
+  private  string $modelImage = Image::class;
+  public ProductForm $productForm;
 
   public function mount()
   {
-    if (request()->segment(4) === 'destroy') {
-      $this->destroy($this->id);
-    }
 
     if ($this->id) {
-      $this->edit();
+      $this->edit(); // Menampilkan form edit
     } else {
-      $this->saving();
+      $this->store(); // Menyimpan produk baru jika tidak ada ID
     }
   }
 
-
-  public function saving()
+  public function create()
   {
-    if (empty($this->name)) {
-      $this->create();
-    }
+    $this->productForm->reset();
   }
 
-  public function saved()
-  {
-    $validatedForm = $this->ProductForm->validate();
-
-    dd($this->filepond);
-    $products = Product::create([
-      'name' => $validatedForm['name'],
-      'created_by' => auth()->user() ? auth()->user()->name : 'anonymous',
-    ]);
-
-    if ($products) {
-      session()->flash('message', 'Product successfully saved!');
-      return redirect('sales/product-sales');
-    } else {
-      session()->flash('message', 'Product Failed Save!');
-      return redirect('sales/product-sales');
-    }
-  }
-
-  public function create() {}
-
-  public function history_log() {}
 
   public function edit()
   {
     $record = $this->model::findOrFail($this->id);
-    $this->ProductForm->fill($record);
+    $this->productForm->fill($record);
   }
 
-  public function updating()
+  public function store()
   {
-    if ($this->id) {
-      $this->updated();
-    } else {
-      $this->saved();
-    }
-  }
+    $validatedForm = $this->productForm->validate();
 
-  public function updated()
-  {
-    // Temukan produk berdasarkan ID
-    $product = Product::find($this->id);
+    $folderName = 'files/product-sales/' . e($this->id);
+    $newImageUrl = $validatedForm['image'];
+    $newImageName = $this->id . '_' . $this->baseImageName;
+    $oldImageUrl = null;
+    $validatedForm['image'] = $this->saveImage(
+      $folderName,
+      $newImageUrl,
+      $newImageName,
+      $oldImageUrl
+    );
 
-    if ($product) {
-      // Update produk dengan data baru
-      $product->update([
-        'name' => $this->ProductForm->name,
-      ]);
+    $validatedForm['slug'] = str($validatedForm['name'])->slug();
+    $record = $this->model::create($validatedForm);
 
-      // Berikan pesan sukses
-      session()->flash('message', 'Product successfully updated!');
+    $imageData = [
+      // 'image' => $record['image'],
 
-      // Redirect ke halaman daftar produk
-      return redirect('sales/product-sales');
-    } else {
-      // Jika produk tidak ditemukan
-      session()->flash('message', 'Product not found!');
-      return redirect('sales/product-sales');
-    }
+      'image' => $validatedForm['image'],
+      'product_id' => $record['id']
+    ];
+
+    Image::create($imageData);
+
+
+    session()->flash('success_notification', __('messages.created_notification_message'));
+    return redirect('sales/product-sales');
   }
 
   public function destroy($id)
@@ -137,6 +117,4 @@ class SalesProductSalesCrud extends Component
         ]),
       ])->title($this->title);
   }
-
-  public string $title = 'Product Sales';
 }
