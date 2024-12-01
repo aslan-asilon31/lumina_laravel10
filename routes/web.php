@@ -51,6 +51,10 @@ Route::prefix('sales')->name('sales.')->group(function () {
   Route::get('/report', SalesReport::class)->name('report');
   Route::get('/sub-extra-sales', SalesSubExtraSales::class)->name('sub-extra-sales');
   Route::get('/category', SalesSubExtraSales::class)->name('category');
+
+  
+  Route::get('/category', SalesProductSales::class)->name('category');
+  Route::get('/category/create', SalesProductSalesCrud::class)->name('product-sales-create');
 });
 
 Route::prefix('warehouse')->name('warehouse.')->group(function () {
